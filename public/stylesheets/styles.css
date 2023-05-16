@@ -54,8 +54,18 @@ p, h1, h2, h3, h4, h5, h6 {
 #root, #__next {
   isolation: isolate;
 }
+strong {
+  color: #f6abb5;
+}
+ul {
+  list-style: none;
+  text-indent: -20px;
+}
 
-
+li::before {
+  content: "✽ ";
+  color: #afa186;
+}
 .flex {
   display: flex;
 }
@@ -90,7 +100,8 @@ p, h1, h2, h3, h4, h5, h6 {
   gap: 3em;
 }
 .nav-btn {
-  color: #c7c7c7;
+  color: whitesmoke;
+  background: #323741;
   border-radius: 100px;
   font-size: 1.1em;
   width: 10em;
@@ -108,9 +119,10 @@ p, h1, h2, h3, h4, h5, h6 {
 .content-container {
   padding: 4em 3em;
   border-radius: 50px;
-  background: #58728b;
+  background: #3f4e69;
   width: 50em;
   height: 50em;
+  gap: 2em;
 }
 .content-container-bg {
   position: absolute;

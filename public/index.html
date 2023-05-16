@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Liu+Jian+Mao+Cao&family=Ubuntu+Mono&display=swap"
             rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="stylesheets/styles.css">
+    <script src="/javascripts/scripts.js" defer></script>
     <title>Title</title>
 </head>
 
@@ -21,11 +22,12 @@
     <div class="top-left">
 
         <div class="nav-container sp-bwtn flex col">
-            <a class="nav-btn" href="http://#">About</a>
-            <a class="nav-btn" href="http://#">Rules</a>
-            <a class="nav-btn" href="http://#">Prizes</a>
-            <a class="nav-btn" href="http://#">Entries</a>
-            <a class="nav-btn" href="http://#">Credits</a>
+            <button class="nav-btn" id="btn-about">Goal</button>
+            <button class="nav-btn" id="btn-timeline">Timeline</button>
+            <button class="nav-btn" id="btn-rules">Rules</button>
+            <button class="nav-btn" id="btn-prizes">Prizes</button>
+            <button class="nav-btn" id="btn-entries">Entries</button>
+            <button class="nav-btn" id="btn-credits">Credits</button>
         </div>
 
     </div>
@@ -45,7 +47,7 @@
     </div>
 
     <div class="bottom-right">
-        <div class="content-container">
+        <div class="content-container flex col" id="content-container">
             main content goes here
         </div>
         <div class="content-container-bg" style="z-index: -1">
