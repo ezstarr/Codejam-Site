@@ -1,0 +1,125 @@
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+/*
+  2. Remove default margin
+*/
+* {
+  margin: 0;
+  border: 0px solid red;
+}
+/*
+  3. Allow percentage-based heights in the application
+*/
+html, body {
+  height: 100%;
+}
+/*
+  Typographic tweaks!
+  4. Add accessible line-height
+  5. Improve text rendering
+*/
+body {
+  line-height: 1.5;
+  background: #323742;
+  font-family: 'Ubuntu Mono', monospace;
+  color: whitesmoke;
+  -webkit-font-smoothing: antialiased;
+}
+/*
+  6. Improve media defaults
+*/
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+/*
+  7. Remove built-in form typography styles
+*/
+input, button, textarea, select {
+  font: inherit;
+}
+/*
+  8. Avoid text overflows
+*/
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+/*
+  9. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
+}
+
+
+.flex {
+  display: flex;
+}
+.row {
+  flex-direction: row;
+}
+.col {
+  flex-direction: column;
+}
+.center {
+  align-item: center;
+}
+.sp-bwtn {
+  justify-content: space-between;
+}
+.icon {
+  width: 12em;
+  height: 8em;
+}
+.main-container {
+  flex-wrap: wrap;
+}
+.banner-top {
+  font-size: 2em;
+  font-family: 'Liu Jian Mao Cao', cursive;
+}
+.banner-bottom {
+  font-size: 4em;
+}
+.nav-container {
+  padding: 3em 3em;
+  gap: 3em;
+}
+.nav-btn {
+  color: #c7c7c7;
+  border-radius: 100px;
+  font-size: 1.1em;
+  width: 10em;
+  height: 3em;
+  text-decoration: none;
+  text-align: center;
+  line-height: 3em;
+}
+.nav-btn:hover {
+  background: #e18a8a;
+}
+.nav-btn:active {
+  background: #ab376c;
+}
+.content-container {
+  padding: 4em 3em;
+  border-radius: 50px;
+  background: #58728b;
+  width: 50em;
+  height: 50em;
+}
+.content-container-bg {
+  position: absolute;
+  top:9.5em;
+  left: 17.5em;
+  padding: 8em 3em;
+  border-radius: 59px;
+  background: #f18e8e;
+  width: 50em;
+  height: 50em;
+  /*background: #f0b7b1;*/
+}
