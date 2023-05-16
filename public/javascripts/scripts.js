@@ -2,6 +2,10 @@ const contentContainer = document.getElementById("content-container")
 const btnAbout =document.getElementById("btn-about")
 const btnTimeline = document.getElementById("btn-timeline")
 const btnRules = document.getElementById("btn-rules")
+const scrollableContent = document.getElementById("scrollable-content")
+const btnEntries = document.getElementById("btn-entries")
+const btnPrizes = document.getElementById("btn-prizes")
+
 function loadpage(page) {
     contentContainer.innerHTML = page.innerHTML
 }
@@ -68,7 +72,7 @@ btnTimeline.addEventListener("click", e => {
 })
 
 btnRules.addEventListener("click", e => {
-        contentContainer.innerHTML = `
+        scrollableContent.innerHTML = `
         <h1>Eligibility</h1>        
             <ul>
                 <li>Must be in TimeEnjoyed's <a href="https://discord.gg/timeenjoyed">discord</a>
@@ -100,9 +104,50 @@ btnRules.addEventListener("click", e => {
                 <li>If code requires high end gpu, or we can't run it, please make a video demo for us to play
                 <li>If addt'l software needed, provide very clear instructions
                 <li> Mac ok if not x86-64
-                    
-            
             </ul>
+   
+        
+            `
+    console.log("clickedddd", e)
+})
+
+btnPrizes.addEventListener("click", e => {
+        scrollableContent.innerHTML = `
+        <h1>Prizes</h1>        
+            <ul>
+                <li>Stickers 
+                <li>Discord badge
+                <li></li>
+                
+            </ul>
+         
+        <h1>Team Size Options</h1>
+            <ul>
+                <li>Solo
+                <li>Group
+                    <ul>
+                        <li>Ideally 3-4. BEST!</li>
+                        <li>Ideal combo: Juniors and Seniors</li>
+                    </ul>
+                </li>
+            </ul>
+            
+        <h1>Github Repo</h1>
+            <ul>
+                <li>Can have any license
+                <li>Add bot as first thing
+                    <ul>
+                        <li>There will be clear instructions
+                    </ul>
+                </li>
+            </ul>
+        <h1>Compatibility: Windows 10+ or Debian-based</h1>
+            <ul>
+                <li>If code requires high end gpu, or we can't run it, please make a video demo for us to play
+                <li>If addt'l software needed, provide very clear instructions
+                <li> Mac ok if not x86-64
+            </ul>
+   
         
             `
     console.log("clickedddd", e)

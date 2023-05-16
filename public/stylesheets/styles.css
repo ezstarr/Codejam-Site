@@ -116,13 +116,23 @@ li::before {
 .nav-btn:active {
   background: #ab376c;
 }
-.content-container {
+.bottom-right
+.content-container{
   padding: 4em 3em;
   border-radius: 50px;
   background: #3f4e69;
   width: 50em;
   height: 50em;
   gap: 2em;
+}
+.content-container {
+  background: transparent;
+  width: 50em;
+  max-height: 50em;
+  gap: 2em;
+    /* for Firefox */
+  min-height: 0;
+  overflow: hidden;
 }
 .content-container-bg {
   position: absolute;
@@ -134,4 +144,24 @@ li::before {
   width: 50em;
   height: 50em;
   /*background: #f0b7b1;*/
+}
+.scrollable-content {
+  flex: 1;
+  max-width: 50em;
+  max-height: 50em;
+  gap: 2em;
+  overflow: auto;
+  padding-right: 2em;
+
+  /* for Firefox */
+}
+.scrollable-content::before {
+  content: '';
+  display: block;
+  position:sticky;
+  height: 50px;
+  background: linear-gradient(to top, #3f4d68, #333 50%, #3f4d68 75%, #333 75%);
+}
+.scrollable-content::after {
+
 }
