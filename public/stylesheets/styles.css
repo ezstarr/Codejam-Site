@@ -159,13 +159,12 @@ li::before {
 
   /* for Firefox */
 }
-.scrollable-content::before {
-  content: '';
-  display: block;
-  position:sticky;
-  height: 50px;
-  background: linear-gradient(to top, #3f4d68, #333 50%, #3f4d68 75%, #333 75%);
-}
-.scrollable-content::after {
+/*.scrollable-content::before {*/
+/*  content: '';*/
+/*  display: block;*/
+/*  position:sticky;*/
+/*  height: 50px;*/
+/*  background: linear-gradient(to top, #3f4d68, #333 50%, #3f4d68 75%, #333 75%);*/
+/*}*/
+/*.scrollable-content::after {*/
 
-}

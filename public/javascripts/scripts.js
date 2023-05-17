@@ -116,8 +116,8 @@ btnPrizes.addEventListener("click", e => {
         <h1>Prizes</h1>        
             <ul>
                 <li>Stickers 
-                <li>Discord badge
-                <li></li>
+                <li>Discord hoisted badge (has emoji)
+                <li>(More TBD)
                 
             </ul>
          
