@@ -14,52 +14,48 @@
 
 <body>
 <div class="flex row">
-<main class="main-container main flex col">
+<div class="left flex col">
 
-    <div class="icon top-right">
+    <div class="icon"> <!-- top left icon-->
     </div>
 
-    <div class="top-left">
-
-        <div class="nav-container sp-bwtn flex col">
+    <div> <!-- left bottom-->
+        <input type="checkbox" id="menuToggle">
+        <label for="menuToggle" class="menu-icon">☰</label>
+        <nav class="nav-container sp-bwtn flex col">
             <button class="nav-btn" id="btn-about">Goal</button>
             <button class="nav-btn" id="btn-timeline">Timeline</button>
             <button class="nav-btn" id="btn-rules">Rules</button>
             <button class="nav-btn" id="btn-prizes">Prizes</button>
             <button class="nav-btn" id="btn-entries">Entries</button>
             <button class="nav-btn" id="btn-credits">Credits</button>
-        </div>
-
+        </nav>
     </div>
-</main>
-<main class="main-container main flex col">
+</div>
+<div class="right-side flex col grow"> <!--contains right colr-->
 
-    <div class="bottom-left">
+    <div class="right-top"> <!--contains banner-->
         <div class="banner">
             <div class="banner-top">
                 TimeEnjoyed's
             </div>
             <div class="banner-bottom">
-                < codejam/ >
+                &lt;codejam/&gt;
             </div>
         </div>
-
     </div>
 
-    <div class="bottom-right">
-
-        <div class="content-container flex col" id="content-container">
+    <main>
+        <div class="content-container flex grow drop-shadow" id="content-container">
             <div class="scrollable-content flex col" id="scrollable-content">
-
                 main content goes here
             </div>
+        </div>
+        <div class="content-container-bg flex grow" style="z-index: -1">
 
         </div>
-        <div class="content-container-bg" style="z-index: -1">
-
-        </div>
-    </div>
-</main>
+    </main>
+</div>
 </div>
 
 </body>

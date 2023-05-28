@@ -10,8 +10,17 @@ function loadpage(page) {
     contentContainer.innerHTML = page.innerHTML
 }
 
+function btnStyling(theBtn){
+    const allNavBtn = document.querySelectorAll(".nav-btn")
+    allNavBtn.forEach(element => element.classList.remove('nav-drop-shadow'))
+    theBtn.classList.add('nav-drop-shadow')
+    contentContainer.classList.add('col')
+    console.log("does this work")
+}
+
 btnAbout.addEventListener("click", e => {
-        contentContainer.innerHTML = `
+    btnStyling(e.target)
+    contentContainer.innerHTML = `
         <h1>Goal</h1>
             <p>The goal of this CodeJam is to challenge ourselves to build something engaging to share with others, ideally with others, and… to make it as fun as possible. 😀 It’s an opportunity to exercise skills in collaboration, creativity, and learning. How does it feel to work in a team? I don’t know - let’s find out!
             </p>
@@ -23,7 +32,9 @@ btnAbout.addEventListener("click", e => {
 })
 
 btnTimeline.addEventListener("click", e => {
-        contentContainer.innerHTML = `
+    console.log(e)
+    btnStyling(e.target)
+    contentContainer.innerHTML = `
         <h1>Timeline</h1>
             <div><strong>June 1st </strong> 
                 <ul>
@@ -72,7 +83,8 @@ btnTimeline.addEventListener("click", e => {
 })
 
 btnRules.addEventListener("click", e => {
-        scrollableContent.innerHTML = `
+    btnStyling(e.target)
+    scrollableContent.innerHTML = `
         <h1>Eligibility</h1>        
             <ul>
                 <li>Must be in TimeEnjoyed's <a href="https://discord.gg/timeenjoyed">discord</a>
@@ -112,6 +124,7 @@ btnRules.addEventListener("click", e => {
 })
 
 btnPrizes.addEventListener("click", e => {
+    btnStyling(e.target)
         scrollableContent.innerHTML = `
         <h1>Prizes</h1>        
             <ul>

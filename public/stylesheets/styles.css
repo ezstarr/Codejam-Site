@@ -9,7 +9,7 @@
 */
 * {
   margin: 0;
-  border: 0px solid red;
+  outline: 0px solid red;
 }
 /*
   3. Allow percentage-based heights in the application
@@ -61,7 +61,9 @@ ul {
   list-style: none;
   text-indent: -20px;
 }
-
+.right-side {
+  max-width: 800px;
+}
 li::before {
   content: "✽ ";
   color: #afa186;
@@ -85,8 +87,8 @@ li::before {
   width: 12em;
   height: 8em;
 }
-.main-container {
-  flex-wrap: wrap;
+.grow{
+  flex-grow: 1;
 }
 .banner-top {
   font-size: 2em;
@@ -94,6 +96,7 @@ li::before {
 }
 .banner-bottom {
   font-size: 4em;
+  text-wrap: none;
 }
 .nav-container {
   padding: 3em 3em;
@@ -103,6 +106,7 @@ li::before {
   color: whitesmoke;
   background: #323741;
   border-radius: 100px;
+  border: 0;
   font-size: 1.1em;
   width: 10em;
   height: 3em;
@@ -110,40 +114,32 @@ li::before {
   text-align: center;
   line-height: 3em;
 }
-.nav-btn:hover {
-  background: #e18a8a;
+.drop-shadow {
+  filter: drop-shadow(12px 12px 0px #f0b7b1);
+
+}
+.nav-drop-shadow {
+  filter: drop-shadow(5px 5px 0px #f0b7b1);
+
 }
 .nav-btn:active {
   background: #ab376c;
-}
-.bottom-right
-.content-container{
-  padding: 4em 3em;
-  border-radius: 50px;
-  background: #3f4e69;
-  width: 50em;
-  height: 50em;
-  gap: 2em;
+
 }
 .content-container {
-  background: transparent;
-  width: 50em;
-  max-height: 50em;
+  padding: 4em 3em;
+  border-radius: 18px;
+  background: #3f4e69;
   gap: 2em;
-    /* for Firefox */
-  min-height: 0;
-  overflow: hidden;
+  border: 2px solid green;
+  margin-right: 1em;
+  margni-bottom: 1em;
 }
 .content-container-bg {
-  position: absolute;
-  top:9.5em;
-  left: 17.5em;
-  padding: 8em 3em;
-  border-radius: 59px;
   background: #f18e8e;
-  width: 50em;
-  height: 50em;
-  /*background: #f0b7b1;*/
+  width: 100%;
+  border: 1px solid blue;
+  background: #f0b7b1;
 }
 .scrollable-content {
   flex: 1;
@@ -163,4 +159,57 @@ li::before {
 /*  background: linear-gradient(to top, #3f4d68, #333 50%, #3f4d68 75%, #333 75%);*/
 /*}*/
 /*.scrollable-content::after {*/
+/*input#menuToggle {*/
+/*  display: none;*/
 
+@media (max-width: 720px) {
+  .left {
+    position: fixed;
+    z-index: 1;
+  }
+  .nav-container {
+    visibility: hidden;
+  }
+  .banner {
+    position: fixed;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    background: #3f4e69;
+    gap: 1em;
+    padding-left: 1em;
+    width: calc(100% - 3em);
+    border: 1px solid red;
+    height: 2em;
+  }
+  .banner-top,
+  .banner-bottom {
+    font-size: 1.3em;
+  }
+  .menu-icon {
+    position: fixed;
+    right: 0;
+    top: 0;
+    padding: 0 1em;
+    z-index: 1999;
+    color: white;
+    width: 3em;
+    height: 2em;
+    border: 2px solid yellow;
+    background-color: #3f4e69;
+
+  }
+  input#menuToggle:checked ~ .nav-container {
+    visibility: visible;
+    transform: translateX(0);
+  }
+  input#menuToggle ~ .nav-container {
+    visibility: hidden;
+    transform: translateX(0);
+  }
+  main {
+    position: fixed;
+    top: 3em;
+    width: 100%;
+  }
+}
