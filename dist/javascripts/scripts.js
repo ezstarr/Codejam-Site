@@ -10,6 +10,7 @@ const isMobile = window.matchMedia('(max-width: 768px)').matches;
 const menuToggle = document.getElementById('menuToggle')
 let navContainerViewstate = false;
 
+
 function loadpage(page) {
     contentContainer.innerHTML = page.innerHTML
 }
@@ -21,23 +22,28 @@ menuToggle.addEventListener("click", function(e) {
             navContainer.style.transform = "translateY(0)";
             navContainer.style.transition = "1s";
             navContainerViewstate = true;
+            console.log('navs off->on')
         } else {
+            console.log(isMobile)
             navContainer.style.visibility = "hidden";
             navContainer.style.transform = "translateY(130%)";
             navContainer.style.transition = "1s";
             navContainerViewstate = false;
+            console.log('navs on-> off')
         }
     } 
 })
 
 function btnStyling(theBtn){
     const allNavBtn = document.querySelectorAll(".nav-btn")
-    if (isMobile) {
+    if (isMobile === true) {
+        console.log("btnStyling called - is mobile")
         navContainer.style.visibility = "hidden";
         navContainer.style.transform = "translateY(130%)";
         navContainer.style.transition = "1s";
-        console.log("what - does this print")
     } else {
+        console.log("this should only print in desktop version")
+        navContainer.style.visibility = "visible";
         allNavBtn.forEach(element => element.classList.remove('nav-drop-shadow'))
         theBtn.classList.add('nav-drop-shadow')
         contentContainer.classList.add('col')
