@@ -61,6 +61,10 @@ ul {
   list-style: none;
   text-indent: -20px;
 }
+main {
+  min-height: 600px;
+  margin-right: 2em;
+}
 .right-side {
   max-width: 800px;
 }
@@ -99,7 +103,7 @@ li::before {
   text-wrap: none;
 }
 .nav-container {
-  padding: 3em 3em;
+  padding: 3em 0em;
   gap: 3em;
 }
 .nav-btn {
@@ -133,13 +137,15 @@ li::before {
   gap: 2em;
   border: 2px solid green;
   margin-right: 1em;
-  margni-bottom: 1em;
+  margin-bottom: 1em;
+  height: 100%;
+
 }
 .content-container-bg {
   background: #f18e8e;
   width: 100%;
   border: 1px solid blue;
-  background: #f0b7b1;
+  /*background: #f0b7b1;*/
 }
 .scrollable-content {
   flex: 1;
@@ -159,9 +165,12 @@ li::before {
 /*  background: linear-gradient(to top, #3f4d68, #333 50%, #3f4d68 75%, #333 75%);*/
 /*}*/
 /*.scrollable-content::after {*/
-/*input#menuToggle {*/
-/*  display: none;*/
-
+input#menuToggle {
+  display: none;
+}
+.menu-icon {
+  visibility: hidden;
+}
 @media (max-width: 720px) {
   .left {
     position: fixed;
@@ -207,9 +216,16 @@ li::before {
     visibility: hidden;
     transform: translateX(0);
   }
+  .menu-icon {
+  visibility: visible;
+  }
   main {
     position: fixed;
     top: 3em;
     width: 100%;
+  }
+  .content-container {
+    margin-left: .2em;
+    margin-right: 1em;
   }
 }
