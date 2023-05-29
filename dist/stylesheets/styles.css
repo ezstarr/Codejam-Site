@@ -103,7 +103,7 @@ li::before {
   text-wrap: none;
 }
 .nav-container {
-  padding: 3em 0em;
+  padding: 3em 2em 0em;
   gap: 3em;
 }
 .nav-btn {
@@ -112,7 +112,7 @@ li::before {
   border-radius: 100px;
   border: 0;
   font-size: 1.1em;
-  width: 10em;
+  width: 8em;
   height: 3em;
   text-decoration: none;
   text-align: center;
@@ -123,30 +123,28 @@ li::before {
 
 }
 .nav-drop-shadow {
-  filter: drop-shadow(5px 5px 0px #f0b7b1);
+  filter: drop-shadow(0px 0px 5px #f0b7b1);
 
 }
 .nav-btn:active {
-  background: #ab376c;
-
+  background: #3f4d68;
 }
+button:hover {
+  background: #454e60;
+}
+
 .content-container {
   padding: 4em 3em;
   border-radius: 18px;
   background: #3f4e69;
   gap: 2em;
-  border: 2px solid green;
+  border: 0;
   margin-right: 1em;
-  margin-bottom: 1em;
+  margin-bottom: 5em;
   height: 100%;
 
 }
-.content-container-bg {
-  background: #f18e8e;
-  width: 100%;
-  border: 1px solid blue;
-  /*background: #f0b7b1;*/
-}
+
 .scrollable-content {
   flex: 1;
   max-width: 50em;
@@ -171,13 +169,38 @@ input#menuToggle {
 .menu-icon {
   visibility: hidden;
 }
-@media (max-width: 720px) {
+@media (max-width: 768px) {
   .left {
     position: fixed;
     z-index: 1;
   }
   .nav-container {
     visibility: hidden;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    top: 0;
+    padding-top: 4em;
+    left: 0;
+    gap: 1em;
+  }
+  .nav-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: pink;
+    z-index: -1;
+    opacity: .5;
+
+  }
+  .nav-btn {
+    width: 100%;
+    font-size: 1.5em;
+    background: #2f405d;
+    border-radius: 10px;
   }
   .banner {
     position: fixed;
@@ -187,13 +210,13 @@ input#menuToggle {
     background: #3f4e69;
     gap: 1em;
     padding-left: 1em;
-    width: calc(100% - 3em);
-    border: 1px solid red;
-    height: 2em;
+    width: calc(100% - 6em);
+    height: 3.5em;
   }
   .banner-top,
   .banner-bottom {
-    font-size: 1.3em;
+    font-size: 1.5em;
+    z-index: -1;
   }
   .menu-icon {
     position: fixed;
@@ -202,19 +225,20 @@ input#menuToggle {
     padding: 0 1em;
     z-index: 1999;
     color: white;
+    font-size: 2em;
     width: 3em;
-    height: 2em;
-    border: 2px solid yellow;
+    height: 1.75em;
     background-color: #3f4e69;
-
   }
   input#menuToggle:checked ~ .nav-container {
     visibility: visible;
-    transform: translateX(0);
+    transform: translateY(0);
+    transition: 1s;
   }
   input#menuToggle ~ .nav-container {
     visibility: hidden;
-    transform: translateX(0);
+    transform: translateY(130%);
+    transition: 1s;
   }
   .menu-icon {
   visibility: visible;
@@ -227,5 +251,6 @@ input#menuToggle {
   .content-container {
     margin-left: .2em;
     margin-right: 1em;
+    margin-top: .8em;
   }
 }

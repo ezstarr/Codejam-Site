@@ -1,21 +1,47 @@
-const contentContainer = document.getElementById("content-container")
-const btnAbout =document.getElementById("btn-about")
-const btnTimeline = document.getElementById("btn-timeline")
-const btnRules = document.getElementById("btn-rules")
-const scrollableContent = document.getElementById("scrollable-content")
-const btnEntries = document.getElementById("btn-entries")
-const btnPrizes = document.getElementById("btn-prizes")
+const contentContainer = document.getElementById("content-container");
+const btnAbout =document.getElementById("btn-about");
+const btnTimeline = document.getElementById("btn-timeline");
+const btnRules = document.getElementById("btn-rules");
+const scrollableContent = document.getElementById("scrollable-content");
+const btnEntries = document.getElementById("btn-entries");
+const btnPrizes = document.getElementById("btn-prizes");
+const navContainer = document.getElementById('nav-container')
+const isMobile = window.matchMedia('(max-width: 768px)').matches;
+const menuToggle = document.getElementById('menuToggle')
+let navContainerViewstate = false;
 
 function loadpage(page) {
     contentContainer.innerHTML = page.innerHTML
 }
 
+menuToggle.addEventListener("click", function(e) {
+    if (isMobile) {
+        if (navContainerViewstate === false) {
+            navContainer.style.visibility = "visible";
+            navContainer.style.transform = "translateY(0)";
+            navContainer.style.transition = "1s";
+            navContainerViewstate = true;
+        } else {
+            navContainer.style.visibility = "hidden";
+            navContainer.style.transform = "translateY(130%)";
+            navContainer.style.transition = "1s";
+            navContainerViewstate = false;
+        }
+    } 
+})
+
 function btnStyling(theBtn){
     const allNavBtn = document.querySelectorAll(".nav-btn")
-    allNavBtn.forEach(element => element.classList.remove('nav-drop-shadow'))
-    theBtn.classList.add('nav-drop-shadow')
-    contentContainer.classList.add('col')
-    console.log("does this work")
+    if (isMobile) {
+        navContainer.style.visibility = "hidden";
+        navContainer.style.transform = "translateY(130%)";
+        navContainer.style.transition = "1s";
+        console.log("what - does this print")
+    } else {
+        allNavBtn.forEach(element => element.classList.remove('nav-drop-shadow'))
+        theBtn.classList.add('nav-drop-shadow')
+        contentContainer.classList.add('col')
+    }
 }
 
 btnAbout.addEventListener("click", e => {
