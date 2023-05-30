@@ -1,0 +1,231 @@
+body {
+    line-height: 1.5;
+    background: #323742;
+    font-family: 'Ubuntu Mono', monospace;
+    color: whitesmoke;
+    -webkit-font-smoothing: antialiased;
+}
+/*
+  Improve media defaults
+*/
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+/*
+  Remove built-in form typography styles
+*/
+input, button, textarea, select {
+    font: inherit;
+}
+/*
+  Avoid text overflows
+*/
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+/*
+  Create a root stacking context
+*/
+#root, #__next {
+    isolation: isolate;
+}
+.strong {
+    color: #f6abb5;
+}
+.ul {
+    list-style: none;
+    text-indent: -20px;
+}
+.main {
+    min-height: 600px;
+    margin-right: 2em;
+}
+.right-side {
+    max-width: 800px;
+}
+li::before {
+    content: "✽ ";
+    color: #afa186;
+}
+.flex {
+    display: flex;
+}
+.row {
+    flex-direction: row;
+}
+.col {
+    flex-direction: column;
+}
+.center {
+    align-item: center;
+}
+.sp-bwtn {
+    justify-content: space-between;
+}
+.icon {
+    width: 12em;
+    height: 8em;
+}
+.grow{
+    flex-grow: 1;
+}
+.banner-top {
+    font-size: 2em;
+    font-family: 'Liu Jian Mao Cao', cursive;
+}
+.banner-bottom {
+    font-size: 4em;
+    text-wrap: none;
+}
+.nav-container {
+    padding: 3em 2em 0em;
+    gap: 3em;
+}
+.nav-btn {
+    color: whitesmoke;
+    background: #323741;
+    border-radius: 100px;
+    border: 0;
+    font-size: 1.1em;
+    width: 8em;
+    height: 3em;
+    text-decoration: none;
+    text-align: center;
+    line-height: 3em;
+}
+.drop-shadow {
+    filter: drop-shadow(12px 12px 0px #f0b7b1);
+
+}
+.nav-drop-shadow {
+    filter: drop-shadow(0px 0px 5px #f0b7b1);
+
+}
+.nav-btn:active {
+    background: #3f4d68;
+}
+button:hover {
+    background: #454e60;
+}
+
+.content-container {
+    padding: 4em 3em;
+    border-radius: 18px;
+    background: #3f4e69;
+    gap: 2em;
+    border: 0;
+    margin-right: 1em;
+    margin-bottom: 5em;
+    height: 100%;
+
+}
+
+.scrollable-content {
+    flex: 1;
+    max-width: 50em;
+    max-height: 50em;
+    gap: 2em;
+    overflow: auto;
+    padding-right: 2em;
+
+    /* for Firefox */
+}
+/*.scrollable-content::before {*/
+/*  content: '';*/
+/*  display: block;*/
+/*  position:sticky;*/
+/*  height: 50px;*/
+/*  background: linear-gradient(to top, #3f4d68, #333 50%, #3f4d68 75%, #333 75%);*/
+/*}*/
+/*.scrollable-content::after {*/
+input#menuToggle {
+    display: none;
+}
+.menu-icon {
+    visibility: hidden;
+}
+@media (max-width: 768px) {
+    .left {
+        position: fixed;
+        z-index: 1;
+    }
+    .nav-container {
+        visibility: hidden;
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        top: 0;
+        padding-top: 4em;
+        left: 0;
+        gap: 1em;
+    }
+    .nav-container::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: pink;
+        z-index: -1;
+        opacity: .5;
+
+    }
+    .nav-btn {
+        width: 100%;
+        font-size: 1.5em;
+        background: #2f405d;
+        border-radius: 10px;
+    }
+    .banner {
+        position: fixed;
+        z-index: 1;
+        display: flex;
+        flex-direction: row;
+        background: #3f4e69;
+        gap: 1em;
+        padding-left: 1em;
+        width: calc(100% - 6em);
+        height: 3.5em;
+    }
+    .banner-top,
+    .banner-bottom {
+        font-size: 1.5em;
+        z-index: -1;
+    }
+    .menu-icon {
+        position: fixed;
+        right: 0;
+        top: 0;
+        padding: 0 1em;
+        z-index: 1999;
+        color: white;
+        font-size: 2em;
+        width: 3em;
+        height: 1.75em;
+        background-color: #3f4e69;
+    }
+    input#menuToggle:checked ~ .nav-container {
+        visibility: visible;
+        transform: translateY(0);
+        transition: 1s;
+    }
+    input#menuToggle ~ .nav-container {
+        visibility: hidden;
+        transform: translateY(130%);
+        transition: 1s;
+    }
+    .menu-icon {
+        visibility: visible;
+    }
+    main {
+        top: 3em;
+        width: 100%;
+    }
+    .content-container {
+        margin-left: .2em;
+        margin-right: 1em;
+        margin-top: .8em;
+    }
+}

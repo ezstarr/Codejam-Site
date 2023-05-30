@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Liu+Jian+Mao+Cao&family=Ubuntu+Mono&display=swap');
+
+:root {
+    /*Fonts*/
+    --primary-font: 'Ubuntu Mono', monospace;
+    --cursive-font: 'Liu Jian Mao Cao', cursive;
+    --primary-color: whitesmoke;
+
+    /*Colors*/
+    --primary-background: #323741;
+    --secondary-background: #3f4d68;
+    --accent-color: #f0b7b1;
+
+    --nav-alignment: 10rem;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html,
+body {
+    max-width: 100vw;
+    background: var(--primary-background);
+    color: var(--primary-color);
+    font-family: var(--primary-font);
+    height: 100%;
+}
+a {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+a:hover {
+    color: var(--primary-color);
+}
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2px var(--primary-background);
+    border-radius: 3px;
+
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 2px;
+}

@@ -1,0 +1,16 @@
+
+.ulC {
+    list-style: outside none;
+    text-indent: -20px;
+}
+.ulC > li {
+    padding-left: 30px;
+}
+.ulC > li::before {
+    content: "✽ ";
+    color: #afa186;
+}
+.ulC > .ulC {
+    padding-left: 40px;
+    padding-bottom: 1rem;
+}
