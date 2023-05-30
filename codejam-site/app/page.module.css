@@ -5,10 +5,16 @@
 }
 .header {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin-left: var(--nav-alignment);
     padding: 1rem 0;
 }
+
+.headerLogo {
+    display: flex;
+    flex-direction: column;
+}
+
 .teHeader {
     font-size: 1.8rem;
     font-family: var(--cursive-font);
@@ -57,6 +63,7 @@
     height: 100%;
     border-radius: 50px;
     filter: drop-shadow(12px 12px 0px #f0b7b1);
+    min-width: 100%;
 }
 .h1 {
     color: var(--accent-color);
@@ -65,8 +72,6 @@
     padding: 2rem 1rem 2rem 0;;
     display: flex;
     flex-direction: column;
-    transition: opacity 1s 0ms;
-    opacity: 1;
     height: 100%;
 }
 .innerContentDiv {
@@ -75,12 +80,74 @@
     gap: 1rem;
     flex-direction: column;
     height: 100%;
-    scrollbar-width: 2px;
-    overflow-y: scroll;
+    scrollbar-width: thin;
+    overflow-y: auto;
     scrollbar-color: var(--accent-color) var(--primary-background)
 }
 .hide {
-    visibility: hidden;
-    position: fixed;
+    display: none;
+}
+
+.footerSocialsContainer {
+    display: flex;
+    flex-direction: column;
+    margin-left: 4rem;
+    justify-content: space-evenly;
+}
+
+.footerSocials {
+    display: flex;
+    padding: 2rem;
+}
+
+.footerSocialsContainer > a > svg {
+    font-size: 3rem;
+}
+
+.footerSocials:hover .socialsPopover {
+    z-index: 1;
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+    cursor: pointer;
+}
+
+.socialsPopover {
+    display: flex;
     opacity: 0;
+    visibility: hidden;
+    background-color: var(--secondary-background);
+    color: var(--primary-color);
+    font-size: small;
+    font-weight: bold;
+    padding: 0.5rem;
+    border-radius: 5px;
+    align-items: center;
+    margin-left: 0.5rem;
+}
+
+.footerSocialsContainer > a {
+    text-decoration: none;
+}
+
+.rainbowText {
+    background-image: repeating-linear-gradient(45deg, #CC99C9, #9EC1CF, #9EE09E, #FDFD97, #FEB144, #FF6663, #BDB2FF, #FFFFFB);
+    text-align: center;
+    background-size: 800% 800%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbow 12s ease infinite;
+}
+
+
+@keyframes rainbow {
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 25%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
 }
