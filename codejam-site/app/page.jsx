@@ -38,7 +38,8 @@ export default function Home() {
                   <button className={`${styles.navButton} ${page === 'timeline' ? styles.navActive: ''}`} onClick={() => setPage('timeline')}>Timeline</button>
                   <button className={`${styles.navButton} ${page === 'rules' ? styles.navActive: ''}`} onClick={() => setPage('rules')}>Rules</button>
                   <button className={`${styles.navButton} ${page === 'prizes' ? styles.navActive: ''}`} onClick={() => setPage('prizes')}>Prizes</button>
-                  <button className={`${styles.navButton} ${page === 'entries' ? styles.navActive: ''}`} onClick={() => setPage('entries')}>Entries</button>
+                  {/*<button className={`${styles.navButton} ${page === 'participants' ? styles.navActive: ''}`} onClick={() => setPage('participants')}>Participants</button>*/}
+                  {/*<button className={`${styles.navButton} ${page === 'entries' ? styles.navActive: ''}`} onClick={() => setPage('entries')}>Entries</button>*/}
                   <button className={`${styles.navButton} ${page === 'credits' ? styles.navActive: ''}`} onClick={() => setPage('credits')}>Credits</button>
               </nav>
 
@@ -177,17 +178,28 @@ export default function Home() {
                   <div className={page === 'prizes' ? styles.contentDiv: styles.hide}>
                       <div className={styles.innerContentDiv}>
                           <h1>Prizes</h1>
+                          <p>Everyone who participates will get a hoisted discord badge! Everyone also will get CodeJam 2023 stickers, as long as they provide a shipping address and the cost isn't over 10USD. We are still brainstorming other prizes that are digital or otherwise.</p>
+                      </div>
+                  </div>
+
+                   {/*PARTICIPANTS PAGE*/}
+
+                  <div className={page === 'participants' ? styles.contentDiv: styles.hide}>
+                      <div className={styles.innerContentDiv}>
+                          <h1>Participants</h1>
+                          <p>Registered people will show up here soon.</p>
                       </div>
                   </div>
 
 
                   {/* ENTRIES PAGE */}
 
-                  <div className={page === 'entries' ? styles.contentDiv: styles.hide}>
-                      <div className={styles.innerContentDiv}>
-                          <h1>Entries</h1>
-                      </div>
-                  </div>
+                  {/*<div className={page === 'entries' ? styles.contentDiv: styles.hide}>*/}
+                  {/*    <div className={styles.innerContentDiv}>*/}
+                  {/*        <h1>Entries</h1>*/}
+                  {/*        <p>This is where people submitted entries can be admired</p>*/}
+                  {/*    </div>*/}
+                  {/*</div>*/}
 
 
                   {/* CREDITS PAGE */}
@@ -195,6 +207,7 @@ export default function Home() {
                   <div className={page === 'credits' ? styles.contentDiv: styles.hide}>
                       <div className={styles.innerContentDiv}>
                           <h1>Credits</h1>
+                          <p>First off, thanks Mysty for making this whole thing happen. Thanks to everyone who volunteered to test and contribute ideas. More credits will be given as the codejam continues.</p>
                       </div>
                   </div>
 
@@ -204,28 +217,28 @@ export default function Home() {
               {/* FOOTER SOCIALS */}
               <div className={styles.footerSocialsContainer}>
                   <Link href={'https://discord.gg/timeenjoyed'} target={"_blank"} className={styles.footerSocials}>
-                      <FaDiscord style={{color: "#5562EA"}} />
+                      <FaDiscord style={{color: "#faa5b4", width: "2.5rem"}} />
                       <div className={styles.socialsPopover}>
                           Discord
                       </div>
                   </Link>
 
                   <Link href={'https://twitch.tv/timeenjoyed'} target={"_blank"} className={styles.footerSocials}>
-                      <FaTwitch style={{color: "#613FA0"}}/>
+                      <FaTwitch style={{color: "#faa5b4", width: "2.5rem"}}/>
                       <div className={styles.socialsPopover}>
                           Twitch
                       </div>
                   </Link>
 
                   <Link href={'https://twitter.com/TimeEnjoyed_'} target={"_blank"} className={styles.footerSocials}>
-                      <FaTwitter style={{color: "#1C9CEA"}}/>
+                      <FaTwitter style={{color: "#faa5b4", width: "2.5rem"}}/>
                       <div className={styles.socialsPopover}>
                           Twitter
                       </div>
                   </Link>
 
                   <Link href={'https://www.instagram.com/time.enjoyed/'} target={"_blank"} className={styles.footerSocials}>
-                      <FaInstagram style={{color: "#F5BD76"}}/>
+                      <FaInstagram style={{color: "#faa5b4", width: "2.5rem"}}/>
                       <div className={styles.socialsPopover}>
                           Instagram
                       </div>

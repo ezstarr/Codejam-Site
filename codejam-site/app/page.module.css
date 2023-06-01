@@ -131,7 +131,7 @@
 }
 
 .rainbowText {
-    background-image: repeating-linear-gradient(45deg, #CC99C9, #9EC1CF, #9EE09E, #FDFD97, #FEB144, #FF6663, #BDB2FF, #FFFFFB);
+    background-image: repeating-linear-gradient(45deg, var(--accent-color), var(--primary-color));
     text-align: center;
     background-size: 800% 800%;
     -webkit-background-clip: text;

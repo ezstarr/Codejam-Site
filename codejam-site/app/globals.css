@@ -2,14 +2,13 @@
 
 :root {
     /*Fonts*/
-    --primary-font: 'Ubuntu Mono', monospace;
     --cursive-font: 'Liu Jian Mao Cao', cursive;
     --primary-color: whitesmoke;
 
     /*Colors*/
     --primary-background: #323741;
     --secondary-background: #3f4d68;
-    --accent-color: #f0b7b1;
+    --accent-color: #faa5b4;
 
     --nav-alignment: 10rem;
 }
@@ -29,7 +28,6 @@ body {
     max-width: 100vw;
     background: var(--primary-background);
     color: var(--primary-color);
-    font-family: var(--primary-font);
     height: 100%;
 }
 a {
