@@ -95,7 +95,7 @@ export default function Home() {
                                         Twitch. :)</li>
                                 </UlC>
                                 <h2><PinkStrong>Updates...</PinkStrong></h2>
-                                <p>Please make sure you're in <a href={"https://discord.gg/timeenjoyed"}>TimeEnjoyed's Discord</a> and registered in the codeja,m to be notified of all related updates ^^</p>
+                                <p>Please make sure you're in <a href={"https://discord.gg/timeenjoyed"}>TimeEnjoyed's Discord</a> and registered in the codejam to be notified of all related updates ^^</p>
                             </div>
                         </div>
 
@@ -116,7 +116,7 @@ export default function Home() {
                                 <div><PinkStrong><h4 className={styles.h4C}>June 30 - July 6</h4></PinkStrong>
                                     <UlC>
                                         <li>Group matchmaking (if needed)</li>
-                                        <li><a href={"http://codejam.timeenjoyed/partipants"}>Click here to see all participants so you can team up</a></li>
+                                        <li><a href={"http://codejam.timeenjoyed/participants"}>Click here to see all participants so you can team up</a></li>
                                         <li>We will try to finalize teams before July 7th.</li>
                                     </UlC>
                                 </div>
