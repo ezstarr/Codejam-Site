@@ -116,7 +116,7 @@ export default function Home() {
                                 <div><PinkStrong><h4 className={styles.h4C}>June 30 - July 6</h4></PinkStrong>
                                     <UlC>
                                         <li>Group matchmaking (if needed)</li>
-                                        <li><a href={"http://codejam.timeenjoyed/participants"}>Click here to see all participants so you can team up</a></li>
+                                        <li><a href={"http://codejam.timeenjoyed.dev/participants"}>Click here to see all participants so you can team up</a></li>
                                         <li>We will try to finalize teams before July 7th.</li>
                                     </UlC>
                                 </div>
