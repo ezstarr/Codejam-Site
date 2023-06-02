@@ -5,9 +5,12 @@
 }
 .ulC > li {
     padding-left: 30px;
+    font-size: 1rem;
+    line-height: 1.2rem;
 }
 .ulC > li::before {
     content: "✽ ";
+    font-size: .8rem;
     color: #afa186;
 }
 .ulC > .ulC {

@@ -68,6 +68,9 @@
 .h1 {
     color: var(--accent-color);
 }
+.h4C {
+    padding-bottom: .5rem;
+}
 .contentDiv {
     padding: 2rem 1rem 2rem 0;;
     display: flex;
