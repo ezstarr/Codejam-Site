@@ -118,6 +118,7 @@ const pivotSwitch = (pivot) => {
           </p>
         </div>
       );
+
     case pivots.timeline /* TIMELINE PAGE */:
       return (
         <div className={styles.innerContentDiv}>
@@ -210,6 +211,7 @@ const pivotSwitch = (pivot) => {
           </div>
         </div>
       );
+
     case pivots.rules /* RULES PAGE */:
       return (
         <div className={styles.innerContentDiv}>
@@ -329,6 +331,7 @@ const pivotSwitch = (pivot) => {
           </p>
         </div>
       );
+
     case pivots.participants /* PARTICIPANTS PAGE */:
       return (
         <div className={styles.innerContentDiv}>
@@ -336,6 +339,7 @@ const pivotSwitch = (pivot) => {
           <p>Registered people will show up here soon.</p>
         </div>
       );
+
     case pivots.entries /* ENTRIES PAGE */:
       return (
         <div className={styles.innerContentDiv}>
@@ -343,6 +347,7 @@ const pivotSwitch = (pivot) => {
           <p>This is where people submitted entries can be admired</p>
         </div>
       );
+
     case pivots.credits /* CREDITS PAGE */:
       return (
         <div className={styles.innerContentDiv}>
@@ -402,6 +407,7 @@ const pivotSwitch = (pivot) => {
           </UlC>
         </div>
       );
+
     default:
       return pivotSwitch(displayPivots[0]); // default to first pivot
   }
