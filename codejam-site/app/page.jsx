@@ -38,6 +38,25 @@ const displayPivots = [
   pivots.credits,
 ];
 
+const footerLinks = {
+  discord: {
+    href: "https://discord.gg/timeenjoyed",
+    icon: FaDiscord,
+  },
+  twitch: {
+    href: "https://twitch.tv/timeenjoyed",
+    icon: FaTwitch,
+  },
+  twitter: {
+    href: "https://twitter.com/TimeEnjoyed_",
+    icon: FaTwitter,
+  },
+  instagram: {
+    href: "https://www.instagram.com/time.enjoyed/",
+    icon: FaInstagram,
+  },
+};
+
 /**
  * @param {pivots} pivot
  * @returns {JSX.Element} the page to be rendered
@@ -440,18 +459,20 @@ export default function Home() {
           {/* MAIN NAVBAR CONTAINER E.G NavBar <- (Left of Content) */}
           <nav className={styles.navContainer}>
             {/*
-              render pivots genericly
+              render pivots generically
               => rendered buttons can be adjusted within displayPivots
             */}
             {displayPivots.map((pivot) => (
-              <button
+              <Link
+                key={pivot}
+                href={"#"}
                 className={`${styles.navButton} ${
                   page === pivot ? styles.navActive : ""
                 }`}
                 onClick={() => setPage(pivot)}
               >
                 {pivot}
-              </button>
+              </Link>
             ))}
           </nav>
 
@@ -463,41 +484,26 @@ export default function Home() {
 
           {/* FOOTER SOCIALS */}
           <div className={styles.footerSocialsContainer}>
-            <Link
-              href={"https://discord.gg/timeenjoyed"}
-              target={"_blank"}
-              className={styles.footerSocials}
-            >
-              <FaDiscord style={{ color: "#faa5b4", width: "2.5rem" }} />
-              <div className={styles.socialsPopover}>Discord</div>
-            </Link>
+            {/*
+              render footer links generically
+              => rendered links can be adjusted within footerLinks
+            */}
+            {[...Object.entries(footerLinks)].map(([key, value]) => {
+              const Icon = value.icon;
 
-            <Link
-              href={"https://twitch.tv/timeenjoyed"}
-              target={"_blank"}
-              className={styles.footerSocials}
-            >
-              <FaTwitch style={{ color: "#faa5b4", width: "2.5rem" }} />
-              <div className={styles.socialsPopover}>Twitch</div>
-            </Link>
-
-            <Link
-              href={"https://twitter.com/TimeEnjoyed_"}
-              target={"_blank"}
-              className={styles.footerSocials}
-            >
-              <FaTwitter style={{ color: "#faa5b4", width: "2.5rem" }} />
-              <div className={styles.socialsPopover}>Twitter</div>
-            </Link>
-
-            <Link
-              href={"https://www.instagram.com/time.enjoyed/"}
-              target={"_blank"}
-              className={styles.footerSocials}
-            >
-              <FaInstagram style={{ color: "#faa5b4", width: "2.5rem" }} />
-              <div className={styles.socialsPopover}>Instagram</div>
-            </Link>
+              return (
+                <Link
+                  key={key}
+                  href={value.href}
+                  target={"_blank"}
+                  className={styles.footerSocials}
+                  rel="noreferrer noopener nofollow"
+                >
+                  <Icon style={{ color: "#faa5b4", width: "2.5rem" }} />
+                  <div className={styles.socialsPopover}>{key}</div>
+                </Link>
+              );
+            })}
           </div>
         </div>
         {/* OUTSIDE INNER CONTAINER */}
