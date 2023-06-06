@@ -31,6 +31,7 @@
 .navContainer {
   display: flex;
   flex-direction: column;
+  gap: 1rem;
   align-items: center;
   justify-content: space-evenly;
   min-width: var(--nav-alignment);
@@ -47,6 +48,29 @@
   text-align: center;
   line-height: 3rem;
 }
+
+.hamburgerIconContainer {
+  border-radius: 6.9px; /* noice */
+  color: var(--primary-color);
+  background: var(--secondary-background);
+  min-width: 1rem;
+  min-height: 1rem;
+  border: 0;
+  font-size: 1.1rem;
+  text-decoration: none;
+  text-align: center;
+  line-height: 3rem;
+  margin: 0.5rem;
+  padding: 0.75rem;
+  transition: all 0.1s;
+  outline: none;
+}
+
+.hamburgerIconContainer:hover {
+  color: var(--accent-color);
+  outline: 2px solid var(--primary-color);
+}
+
 .navActive {
   filter: drop-shadow(0px 0px 5px var(--accent-color));
 }
@@ -87,7 +111,8 @@
   overflow-y: auto;
   scrollbar-color: var(--accent-color) var(--primary-background);
 }
-.hide {
+.hide,
+.hamburgerIconContainer {
   display: none;
 }
 
@@ -142,6 +167,7 @@
   text-align: center;
   background-size: 800% 800%;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: rainbow 12s ease infinite;
 }
@@ -155,5 +181,54 @@
   }
   100% {
     background-position: 0 50%;
+  }
+}
+
+/* media query from small laptop width downwards */
+@media screen and (max-width: 1024px) {
+  /* don't forget to change this value in page.jsx as well */
+  .innerContainer {
+    padding: 5%;
+    width: 95%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .header {
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  .footerSocialsContainer {
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  .footerSocials .socialsPopover {
+    z-index: 1;
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+    cursor: pointer;
+  }
+
+  /* idea to make the links operate in a grid? */
+  /* although it doesn't look too bad right now, I am not sure exactly how you want it to look like, so will leave you with the bare minimum :+1: (:+1: = thumbsup emoji) */
+  .footerSocialsContainer {
+    margin-left: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footerSocials {
+    padding: 1rem;
+  }
+
+  /* only shows hamburger icon till small laptop width */
+  .hamburgerIconContainer {
+    display: flex;
   }
 }

@@ -1,10 +1,16 @@
 "use client";
 import styles from "./page.module.css";
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PinkStrong from "@/app/_components/pinkStrong";
 import UlC from "@/app/_components/ulC";
-import { FaTwitch, FaDiscord, FaTwitter, FaInstagram } from "react-icons/fa";
+import {
+  FaTwitch,
+  FaDiscord,
+  FaTwitter,
+  FaInstagram,
+  FaBars,
+} from "react-icons/fa";
 import Link from "next/link";
 
 const pivots = {
@@ -433,13 +439,38 @@ const pivotSwitch = (pivot) => {
 };
 
 export default function Home() {
+  // constant
+  const SHOW_MENU_WIDTH = 1024; // don't forget to change this in page.module.css
+
+  // state
   const [page, setPage] = useState(displayPivots[0]);
+  const [showMenu, setShowMenu] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const newWidth = window.innerWidth;
+      setWindowWidth(newWidth);
+      if (newWidth < SHOW_MENU_WIDTH) {
+        setShowMenu(false);
+      } else {
+        setShowMenu(true);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", () => {});
+    };
+  }, []);
+
   return (
-    <>
+    <div>
       <Head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Code Jam</title>
+        <title>{page} | Code Jam</title>
       </Head>
 
       {/* Container for everything (PARENT CONTAINER) */}
@@ -458,22 +489,41 @@ export default function Home() {
         <div className={styles.innerContainer}>
           {/* MAIN NAVBAR CONTAINER E.G NavBar <- (Left of Content) */}
           <nav className={styles.navContainer}>
+            {windowWidth < SHOW_MENU_WIDTH && (
+              <button
+                className={styles.hamburgerIconContainer}
+                onClick={() => setShowMenu(!showMenu)}
+                aria-label={`${showMenu ? "Hide" : "Show"} navigation menu`}
+              >
+                <FaBars
+                  className={styles.hamburgerIcon}
+                  aria-hidden="true"
+                  role="presentation"
+                  tabIndex="-1"
+                />
+              </button>
+            )}
+
             {/*
               render pivots generically
               => rendered buttons can be adjusted within displayPivots
             */}
-            {displayPivots.map((pivot) => (
-              <Link
-                key={pivot}
-                href={"#"}
-                className={`${styles.navButton} ${
-                  page === pivot ? styles.navActive : ""
-                }`}
-                onClick={() => setPage(pivot)}
-              >
-                {pivot}
-              </Link>
-            ))}
+            {Boolean(
+              (windowWidth < SHOW_MENU_WIDTH && showMenu) ||
+                windowWidth >= SHOW_MENU_WIDTH
+            ) &&
+              displayPivots.map((pivot) => (
+                <Link
+                  key={pivot}
+                  href={"#"}
+                  className={`${styles.navButton} ${
+                    page === pivot ? styles.navActive : ""
+                  }`}
+                  onClick={() => setPage(pivot)}
+                >
+                  {pivot}
+                </Link>
+              ))}
           </nav>
 
           {/* MAIN CONTENT CONTAINER E.G -> Content (Right of NavBar) */}
@@ -483,7 +533,7 @@ export default function Home() {
           {/* OUTSIDE CONTENT CONTAINER */}
 
           {/* FOOTER SOCIALS */}
-          <div className={styles.footerSocialsContainer}>
+          <footer className={styles.footerSocialsContainer}>
             {/*
               render footer links generically
               => rendered links can be adjusted within footerLinks
@@ -498,16 +548,22 @@ export default function Home() {
                   target={"_blank"}
                   className={styles.footerSocials}
                   rel="noreferrer noopener nofollow"
+                  aria-label={key}
                 >
-                  <Icon style={{ color: "#faa5b4", width: "2.5rem" }} />
+                  <Icon
+                    style={{ color: "#faa5b4", width: "2.5rem", speak: "none" }}
+                    aria-hidden="true"
+                    role="presentation"
+                    tabIndex="-1"
+                  />
                   <div className={styles.socialsPopover}>{key}</div>
                 </Link>
               );
             })}
-          </div>
+          </footer>
         </div>
         {/* OUTSIDE INNER CONTAINER */}
       </div>
-    </>
+    </div>
   );
 }
