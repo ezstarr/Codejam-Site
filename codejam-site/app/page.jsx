@@ -1,349 +1,569 @@
 "use client";
-import styles from './page.module.css'
+import styles from "./page.module.css";
 import Head from "next/head";
-import {useState} from "react";
+import { useEffect, useState } from "react";
 import PinkStrong from "@/app/_components/pinkStrong";
 import UlC from "@/app/_components/ulC";
-import {FaTwitch, FaDiscord, FaTwitter, FaInstagram} from "react-icons/fa";
+import {
+  FaTwitch,
+  FaDiscord,
+  FaTwitter,
+  FaInstagram,
+  FaBars,
+} from "react-icons/fa";
 import Link from "next/link";
 
+const pivots = {
+  goal: "Goal",
+  timeline: "Timeline",
+  rules: "Rules",
+  links: "Links",
+  prizes: "Prizes",
+  participants: "Participants",
+  entries: "Entries",
+  credits: "Credits",
+  copyleft: "Copyleft",
+};
+
+/**
+ * @type {string[]}
+ *
+ * @description these are the pivots that will be displayed in the navbar
+ *              they are displayed in the order they are listed here
+ *              if you want to add a new pivot, add it here
+ *              the first element is the default pivot
+ */
+const displayPivots = [
+  pivots.goal,
+  pivots.timeline,
+  pivots.rules,
+  // pivots.links,
+  pivots.prizes,
+  // pivots.participants,
+  // pivots.entries,
+  pivots.credits,
+];
+
+const footerLinks = {
+  discord: {
+    href: "https://discord.gg/timeenjoyed",
+    icon: FaDiscord,
+  },
+  twitch: {
+    href: "https://twitch.tv/timeenjoyed",
+    icon: FaTwitch,
+  },
+  twitter: {
+    href: "https://twitter.com/TimeEnjoyed_",
+    icon: FaTwitter,
+  },
+  instagram: {
+    href: "https://www.instagram.com/time.enjoyed/",
+    icon: FaInstagram,
+  },
+};
+
+/**
+ * @param {pivots} pivot
+ * @returns {JSX.Element} the page to be rendered
+ */
+const pivotSwitch = (pivot) => {
+  switch (pivot) {
+    case pivots.goal /* GOAL PAGE */:
+      return (
+        <div className={styles.innerContentDiv}>
+          <h1>Goal</h1>
+          <p>
+            The goal of this CodeJam is to challenge ourselves to build
+            something engaging to share with others, ideally with others, and…
+            to make it as fun as possible. 😀 It’s an opportunity to exercise
+            skills in collaboration, creativity, and learning. How does it feel
+            to work in a team? I don’t know - let’s find out!{" "}
+          </p>
+
+          <p>
+            <span title={"The answer is always yes"}>
+              Can we learn from each other
+            </span>
+            ? Can we improve each other’s{" "}
+            <span
+              title={
+                "We think so! Everyone's been SUPER DUPER resourceful, like omg"
+              }
+            >
+              resourcefulness
+            </span>
+            ? If one person improves as a developer, or if a new friendship is
+            made, we would be so happy and consider this event a success. As a
+            bonus, maybe we can add a new project to our resume and gain a new
+            network that lasts beyond this event. :)
+          </p>
+          <br />
+
+          <h2>
+            <PinkStrong>
+              Category:{" "}
+              <span title={"This was released on June 1st!"}>
+                <u>Twitch-Integration</u>
+              </span>
+            </PinkStrong>
+          </h2>
+          <p>
+            <span title={"Did you guess it? :)"}>Yeeeep</span>. Since this
+            community was created on Twitch, we thought it'd be appropriate if
+            the CodeJam revolved around Twitch related software! Don't get
+            started yet, you still need the{" "}
+            <span title={"To be released on July 7th"}>
+              <b>THEME</b>
+            </span>
+            , but we wanted to let you know what you're signing up for.
+          </p>
+          <p>
+            The options are really endless when it comes to Twitch integration.
+            Examples:
+          </p>
+          <UlC>
+            <li>Chat bots</li>
+            <li>Twitch Extensions</li>
+            <li>Game overlays</li>
+            <li>Website</li>
+            <li>
+              So on and so forth, as long as we can tell it's something that has
+              to do with Twitch. :)
+            </li>
+          </UlC>
+          <h2>
+            <PinkStrong>Updates...</PinkStrong>
+          </h2>
+          <p>
+            Please make sure you're in{" "}
+            <a href={"https://discord.gg/timeenjoyed"}>TimeEnjoyed's Discord</a>{" "}
+            and registered in the codejam to be notified of all related updates
+            ^^
+          </p>
+        </div>
+      );
+
+    case pivots.timeline /* TIMELINE PAGE */:
+      return (
+        <div className={styles.innerContentDiv}>
+          <h1>Timeline</h1>
+          <div>
+            <PinkStrong>
+              <h4 className={styles.h4C}>June 1st</h4>
+            </PinkStrong>
+            <UlC>
+              <li>Signups start</li>
+              <UlC>
+                <li>
+                  click the <b>signup</b> button in{" "}
+                  <a href={"http://discord.gg/timeenjoyed"}>Discord</a> &gt;
+                  CodeJam Category &gt; #signups
+                </li>
+              </UlC>
+            </UlC>
+          </div>
+
+          <div>
+            <PinkStrong>
+              <h4 className={styles.h4C}>June 30 - July 6</h4>
+            </PinkStrong>
+            <UlC>
+              <li>Group matchmaking (if needed)</li>
+              <li>
+                <a href={"http://codejam.timeenjoyed.dev/participants"}>
+                  Click here to see all participants so you can team up
+                </a>
+              </li>
+              <li>We will try to finalize teams before July 7th.</li>
+            </UlC>
+          </div>
+
+          <div>
+            <PinkStrong>
+              <h4 className={styles.h4C}>July 7</h4>
+            </PinkStrong>
+            <UlC>
+              <li>Competition Starts</li>
+              <li>Theme Announced in Discord</li>
+              <li>You'll get a Repository for your team in our Github.</li>
+            </UlC>
+          </div>
+
+          <div>
+            <PinkStrong>
+              <h4 className={styles.h4C}>July 16</h4>
+            </PinkStrong>
+            <UlC>
+              <li>
+                Competition Ends - we collect submissions before midnight UTC
+              </li>
+            </UlC>
+          </div>
+
+          <div>
+            <PinkStrong>
+              <h4 className={styles.h4C}>July 22nd</h4>
+            </PinkStrong>
+            <UlC>
+              <li>Code Review Stream!!!</li>
+              <li>Chat gets to vote on a bunch of categories.</li>
+              <UlC>
+                <li>
+                  Each vote is going to cost 300 channel points, so please save
+                  up!
+                </li>
+              </UlC>
+            </UlC>
+          </div>
+
+          <div>
+            <PinkStrong>
+              <h4 className={styles.h4C}>July 23rd (maybe)</h4>
+            </PinkStrong>
+            <UlC>
+              <li>Community Stream</li>
+              <UlC>
+                <li>Garctic Phone</li>
+                <li>Marbles on Stream</li>
+                <li>Your pick?</li>
+              </UlC>
+              <li>Mailing Addresses Collected</li>
+              <UlC>
+                <li>optional - only if you want stickers</li>
+              </UlC>
+            </UlC>
+          </div>
+        </div>
+      );
+
+    case pivots.rules /* RULES PAGE */:
+      return (
+        <div className={styles.innerContentDiv}>
+          <h1>Rules</h1>
+          <h2>
+            <PinkStrong>Eligibility</PinkStrong>
+          </h2>
+          <h4>Are there any limits?</h4>
+          <UlC>
+            <li>
+              Must be in our{" "}
+              <a href={"https://discord.gg/timeenjoyed"}>discord</a>
+            </li>
+            <UlC>
+              <li>Instructions to signup under CodeJam Category</li>
+            </UlC>
+            <li>Register before July 7th (highly preferred)</li>
+          </UlC>
+          <h2>
+            <PinkStrong>Team Size</PinkStrong>
+          </h2>
+          <h4>
+            Teams can be any size. During signup, people can select their
+            preferred team option:
+          </h4>
+          <UlC>
+            <li>Solo</li>
+            <li>Team (self organized)</li>
+            <li>Ideal team size: 3-4 = BEST!</li>
+            <UlC>
+              <li>Ideal combination: juniors and seniors</li>
+              <li>
+                Let a Team Manager on discord know if you need assistance
+                finding a team
+              </li>
+            </UlC>
+          </UlC>
+          <h2>
+            <PinkStrong>Github Usage</PinkStrong>
+          </h2>
+          <UlC>
+            <li>
+              We'll provide a Repository for your team. (tracks commits, etc)
+            </li>
+            <li>
+              Any open source license is fine. (
+              <a href="#" onClick={() => setPage(pivots.copyleft)}>
+                <small>copyleft license</small>
+              </a>
+              )
+            </li>
+          </UlC>
+          <h2>
+            <PinkStrong>Submission Rules</PinkStrong>
+          </h2>
+          <UlC>
+            <li>Please include:</li>
+            <UlC>
+              <li>A readme explaining:</li>
+              <UlC>
+                <li>What the project is</li>
+                <li>What language its written in</li>
+                <li>How to compile and run the application</li>
+              </UlC>
+              <li>A file containing all package requirements</li>
+              <li>All assets with necessary license</li>
+            </UlC>
+            <li>Shouldn't be a pain to set up (no more than 15 mins).</li>
+            <li>No tokens/keys that can’t be made for free by ourselves.</li>
+            <UlC>
+              <li>
+                Example: If making a twitch bot, we should be able to put in our
+                own bot token.
+              </li>
+            </UlC>
+            <li>Please exclude:</li>
+            <UlC>
+              <li>node modules</li>
+              <li>build/target files</li>
+              <li>No executable, we compile it ourselves.</li>
+            </UlC>
+          </UlC>
+          <h4>
+            <PinkStrong>Compatibility: Windows 10+/Debian</PinkStrong>
+          </h4>
+          <UlC>
+            <li>
+              If code requires high end gpu or we can’t run it, pls make a video
+              demo for us to play.
+            </li>
+            <li>If addt'l software is used, need very clear instructions.</li>
+          </UlC>
+        </div>
+      );
+    // case pivots.links /* LINKS PAGE */:
+    //   return (
+    //     <div className={styles.innerContentDiv}>
+    //       <h1>All Links</h1>
+    //       <p>Consider this page a site-map for links.</p>
+    //       <p>
+    //         <a href="#" onClick={() => setPage("copyleft")}>
+    //           copyleft license
+    //         </a>
+    //       </p>
+    //       <p>THing3</p>
+    //     </div>
+    //   );
+    case pivots.prizes /* PRIZES PAGE */:
+      return (
+        <div className={styles.innerContentDiv}>
+          <h1>Prizes</h1>
+          <p>
+            Everyone who participates will get a hoisted discord badge! Everyone
+            also will get CodeJam 2023 stickers, as long as they provide a
+            shipping address and the cost isn't over 10USD. We are still
+            brainstorming other prizes that are digital or otherwise.
+          </p>
+        </div>
+      );
+
+    case pivots.participants /* PARTICIPANTS PAGE */:
+      return (
+        <div className={styles.innerContentDiv}>
+          <h1>Participants</h1>
+          <p>Registered people will show up here soon.</p>
+        </div>
+      );
+
+    case pivots.entries /* ENTRIES PAGE */:
+      return (
+        <div className={styles.innerContentDiv}>
+          <h1>Entries</h1>
+          <p>This is where people submitted entries can be admired</p>
+        </div>
+      );
+
+    case pivots.credits /* CREDITS PAGE */:
+      return (
+        <div className={styles.innerContentDiv}>
+          <h1>Credits</h1>
+          <p>
+            First off, thanks Mysty for making this whole thing happen. Thanks
+            to everyone who volunteered to test and contribute ideas. More
+            credits will be given as the codejam continues.
+          </p>
+        </div>
+      );
+    case pivots.copyleft /* CREDITS PAGE */:
+      return (
+        <div className={styles.innerContentDiv}>
+          <h1>Copyleft License</h1>
+          <a href="#" onClick={() => setPage(pivots.rules)}>
+            Return
+          </a>
+          <p>
+            Technically a copyright license, but often referred to as
+            'copyleft'.
+          </p>
+          <p>
+            I asked ChatGPT: "can you explain what a copy left license does in
+            simple terms, especially when it comes to using it in a code jam"
+          </p>
+          <p>It replied:</p>
+          <UlC>
+            <li>
+              Certainly! In simple terms, a copyleft license is a type of
+              software license that ensures that the software and its
+              modifications remain free and open-source. It is designed to
+              protect the freedom of the software and its users.
+            </li>
+            <li>
+              When you use a copyleft license in a code jam, it means that any
+              code you contribute or modify during the jam must also be made
+              available under the same copyleft license. This requirement
+              ensures that the code and its derivatives stay open-source and
+              freely available to others.
+            </li>
+            <li>
+              Let's say you participate in a code jam and use a copyleft license
+              for your code. If someone else wants to use or modify your code,
+              they are also required to make their changes available under the
+              same copyleft license. This ensures that the software community
+              continues to benefit from the contributions and encourages
+              collaboration and sharing of code.
+            </li>
+            <li>
+              Copyleft licenses are often used in code jams and open-source
+              projects to foster a culture of collaboration, sharing, and
+              innovation. They help ensure that the code remains freely
+              accessible, encourages others to contribute improvements, and
+              prevents the code from being turned into proprietary software.
+            </li>
+          </UlC>
+        </div>
+      );
+
+    default:
+      return pivotSwitch(displayPivots[0]); // default to first pivot
+  }
+};
+
 export default function Home() {
-    const [page, setPage] = useState('goal');
-    return (
-        <>
-            <Head>
-                <meta charSet="UTF-8"/>
-                <meta name="viewport" content="width=device-width, initial-scale=1"/>
-                <title>Code Jam</title>
-            </Head>
+  // constant
+  const SHOW_MENU_WIDTH = 1024; // don't forget to change this in page.module.css
 
-            {/* Container for everything (PARENT CONTAINER) */}
-            <div className={styles.container}>
+  // state
+  const [page, setPage] = useState(displayPivots[0]);
+  const [showMenu, setShowMenu] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(0);
 
-                {/* Header Container */}
-                <div className={styles.header}>
-                    <div className={styles.headerLogo} title={"yiiiiiissssss"}>
-                        <span className={styles.teHeader}>TimeEnjoyed's</span>
-                        <span className={`${styles.cjHeader} ${styles.rainbowText}`}>&lt;codejam/&gt;</span>
-                    </div>
-                </div>
+  useEffect(() => {
+    const handleResize = () => {
+      const newWidth = window.innerWidth;
+      setWindowWidth(newWidth);
+      if (newWidth < SHOW_MENU_WIDTH) {
+        setShowMenu(false);
+      } else {
+        setShowMenu(true);
+      }
+    };
 
-                {/* Container for all NavBar and Content */}
-                <div className={styles.innerContainer}>
+    window.addEventListener("resize", handleResize);
 
-                    {/* MAIN NAVBAR CONTAINER E.G NavBar <- (Left of Content) */}
-                    <nav className={styles.navContainer}>
-                        <button className={`${styles.navButton} ${page === 'goal' ? styles.navActive : ''}`}
-                                onClick={() => setPage('goal')}>Goal
-                        </button>
-                        <button className={`${styles.navButton} ${page === 'timeline' ? styles.navActive : ''}`}
-                                onClick={() => setPage('timeline')}>Timeline
-                        </button>
-                        <button className={`${styles.navButton} ${page === 'rules' ? styles.navActive : ''}`}
-                                onClick={() => setPage('rules')}>Rules
-                        </button>
-                        {/*<button className={`${styles.navButton} ${page === 'links' ? styles.navActive : ''}`}*/}
-                        {/*        onClick={() => setPage('links')}>Links*/}
-                        {/*</button>*/}
-                        <button className={`${styles.navButton} ${page === 'prizes' ? styles.navActive : ''}`}
-                                onClick={() => setPage('prizes')}>Prizes
-                        </button>
-                        {/*<button className={`${styles.navButton} ${page === 'participants' ? styles.navActive: ''}`} onClick={() => setPage('participants')}>Participants</button>*/}
-                        {/*<button className={`${styles.navButton} ${page === 'entries' ? styles.navActive: ''}`} onClick={() => setPage('entries')}>Entries</button>*/}
-                        <button className={`${styles.navButton} ${page === 'credits' ? styles.navActive : ''}`}
-                                onClick={() => setPage('credits')}>Credits
-                        </button>
-                    </nav>
+    return () => {
+      window.removeEventListener("resize", () => {});
+    };
+  }, []);
 
-                    {/* MAIN CONTENT CONTAINER E.G -> Content (Right of NavBar) */}
-                    <div className={styles.contentContainer}>
+  return (
+    <div>
+      <Head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{page} | Code Jam</title>
+      </Head>
 
-                        {/* GOAL PAGE */}
+      {/* Container for everything (PARENT CONTAINER) */}
+      <div className={styles.container}>
+        {/* Header Container */}
+        <div className={styles.header}>
+          <div className={styles.headerLogo} title={"yiiiiiissssss"}>
+            <span className={styles.teHeader}>TimeEnjoyed's</span>
+            <span className={`${styles.cjHeader} ${styles.rainbowText}`}>
+              &lt;codejam/&gt;
+            </span>
+          </div>
+        </div>
 
-                        <div className={page === 'goal' ? styles.contentDiv : styles.hide}>
-                            <div className={styles.innerContentDiv}>
-                                <h1>Goal</h1>
-                                <p>
-                                    The goal of this CodeJam is to challenge ourselves to build something engaging to
-                                    share with others, ideally with others, and… to make it as fun as possible. 😀 It’s
-                                    an opportunity to exercise skills in collaboration, creativity, and learning. How
-                                    does it feel to work in a team? I don’t know - let’s find out! </p>
+        {/* Container for all NavBar and Content */}
+        <div className={styles.innerContainer}>
+          {/* MAIN NAVBAR CONTAINER E.G NavBar <- (Left of Content) */}
+          <nav className={styles.navContainer}>
+            {windowWidth < SHOW_MENU_WIDTH && (
+              <button
+                className={styles.hamburgerIconContainer}
+                onClick={() => setShowMenu(!showMenu)}
+                aria-label={`${showMenu ? "Hide" : "Show"} navigation menu`}
+              >
+                <FaBars
+                  className={styles.hamburgerIcon}
+                  aria-hidden="true"
+                  role="presentation"
+                  tabIndex="-1"
+                />
+              </button>
+            )}
 
-                                <p><span title={"The answer is always yes"}>Can we learn from each other</span>? Can we
-                                    improve each other’s <span
-                                        title={"We think so! Everyone's been SUPER DUPER resourceful, like omg"}>resourcefulness</span>?
-                                    If one person improves as a developer, or if a new friendship is made, we would be
-                                    so happy and consider this event a success. As a bonus, maybe we can add a new
-                                    project to our resume and gain a new network that lasts beyond this event. :)</p>
-                                <br/>
+            {/*
+              render pivots generically
+              => rendered buttons can be adjusted within displayPivots
+            */}
+            {Boolean(
+              (windowWidth < SHOW_MENU_WIDTH && showMenu) ||
+                windowWidth >= SHOW_MENU_WIDTH
+            ) &&
+              displayPivots.map((pivot) => (
+                <Link
+                  key={pivot}
+                  href={"#"}
+                  className={`${styles.navButton} ${
+                    page === pivot ? styles.navActive : ""
+                  }`}
+                  onClick={() => setPage(pivot)}
+                >
+                  {pivot}
+                </Link>
+              ))}
+          </nav>
 
-                                <h2><PinkStrong>Category: <span
-                                    title={"This was released on June 1st!"}><u>Twitch-Integration</u></span></PinkStrong>
-                                </h2>
-                                <p><span title={"Did you guess it? :)"}>Yeeeep</span>. Since this community was created
-                                    on Twitch, we thought it'd be appropriate if the CodeJam revolved around Twitch
-                                    related software! Don't get started yet, you still need the <span
-                                        title={"To be released on July 7th"}><b>THEME</b></span>, but we wanted to let
-                                    you know what you're signing up for.</p>
-                                <p>The options are really endless when it comes to Twitch integration. Examples:</p>
-                                <UlC>
-                                    <li>Chat bots</li>
-                                    <li>Twitch Extensions</li>
-                                    <li>Game overlays</li>
-                                    <li>Website</li>
-                                    <li>So on and so forth, as long as we can tell it's something that has to do with
-                                        Twitch. :)</li>
-                                </UlC>
-                                <h2><PinkStrong>Updates...</PinkStrong></h2>
-                                <p>Please make sure you're in <a href={"https://discord.gg/timeenjoyed"}>TimeEnjoyed's Discord</a> and registered in the codejam to be notified of all related updates ^^</p>
-                            </div>
-                        </div>
+          {/* MAIN CONTENT CONTAINER E.G -> Content (Right of NavBar) */}
+          <div className={styles.contentContainer}>
+            <div className={styles.contentDiv}>{pivotSwitch(page)}</div>
+          </div>
+          {/* OUTSIDE CONTENT CONTAINER */}
 
-                        {/* TIMELINE PAGE */}
+          {/* FOOTER SOCIALS */}
+          <footer className={styles.footerSocialsContainer}>
+            {/*
+              render footer links generically
+              => rendered links can be adjusted within footerLinks
+            */}
+            {[...Object.entries(footerLinks)].map(([key, value]) => {
+              const Icon = value.icon;
 
-                        <div className={page === 'timeline' ? styles.contentDiv : styles.hide}>
-                            <div className={styles.innerContentDiv}>
-                                <h1>Timeline</h1>
-                                <div><PinkStrong><h4 className={styles.h4C}>June 1st</h4></PinkStrong>
-                                    <UlC>
-                                        <li>Signups start</li>
-                                        <UlC>
-                                            <li>click the <b>signup</b> button in <a href={"http://discord.gg/timeenjoyed"}>Discord</a> &gt; CodeJam Category &gt; #signups</li>
-                                        </UlC>
-                                    </UlC>
-                                </div>
-
-                                <div><PinkStrong><h4 className={styles.h4C}>June 30 - July 6</h4></PinkStrong>
-                                    <UlC>
-                                        <li>Group matchmaking (if needed)</li>
-                                        <li><a href={"http://codejam.timeenjoyed.dev/participants"}>Click here to see all participants so you can team up</a></li>
-                                        <li>We will try to finalize teams before July 7th.</li>
-                                    </UlC>
-                                </div>
-
-                                <div><PinkStrong><h4 className={styles.h4C}>July 7</h4></PinkStrong>
-                                    <UlC>
-                                        <li>Competition Starts</li>
-                                        <li>Theme Announced in Discord</li>
-                                        <li>You'll get a Repository for your team in our Github.</li>
-                                    </UlC>
-                                </div>
-
-                                <div><PinkStrong><h4 className={styles.h4C}>July 16</h4></PinkStrong>
-                                    <UlC>
-                                        <li>Competition Ends - we collect submissions before midnight UTC</li>
-                                    </UlC>
-                                </div>
-
-                                <div><PinkStrong><h4 className={styles.h4C}>July 22nd</h4></PinkStrong>
-                                    <UlC>
-                                        <li>Code Review Stream!!!</li>
-                                        <li>Chat gets to vote on a bunch of categories.</li>
-                                        <UlC>
-                                            <li>Each vote is going to cost 300 channel points, so please save up!</li>
-                                        </UlC>
-                                    </UlC>
-                                </div>
-
-                                <div><PinkStrong><h4 className={styles.h4C}>July 23rd (maybe)</h4></PinkStrong>
-                                    <UlC>
-                                        <li>Community Stream</li>
-                                        <UlC>
-                                            <li>Garctic Phone</li>
-                                            <li>Marbles on Stream</li>
-                                            <li>Your pick?</li>
-                                        </UlC>
-                                        <li>Mailing Addresses Collected</li>
-                                        <UlC>
-                                            <li>optional - only if you want stickers</li>
-                                        </UlC>
-                                    </UlC>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        {/* RULES PAGE */}
-
-                        <div className={page === 'rules' ? styles.contentDiv : styles.hide}>
-                            <div className={styles.innerContentDiv}>
-                                <h1>Rules</h1>
-                                <h2><PinkStrong>Eligibility</PinkStrong></h2>
-                                <h4>Are there any limits?</h4>
-                                <UlC>
-                                    <li>Must be in our <a href={"https://discord.gg/timeenjoyed"}>discord</a></li>
-                                    <UlC>
-                                        <li>Instructions to signup under CodeJam Category</li>
-                                    </UlC>
-                                    <li>Register before July 7th (highly preferred)</li>
-                                </UlC>
-                                <h2><PinkStrong>Team Size</PinkStrong></h2>
-                                <h4>Teams can be any size. During signup, people can select their preferred team
-                                    option:</h4>
-                                <UlC>
-                                    <li>Solo</li>
-                                    <li>Team (self organized)</li>
-                                    <li>Ideal team size: 3-4 = BEST!</li>
-                                    <UlC>
-                                        <li>Ideal combination: juniors and seniors</li>
-                                        <li>Let a Team Manager on discord know if you need assistance finding a team</li>
-                                    </UlC>
-                                </UlC>
-                                <h2><PinkStrong>Github Usage</PinkStrong></h2>
-                                <UlC>
-                                    <li>We'll provide a Repository for your team. (tracks commits, etc)</li>
-                                    <li>Any open source license is fine. (<a href="#" onClick={() => setPage('copyleft')}><small>copyleft license</small></a>)</li>
-                                </UlC>
-                                <h2><PinkStrong>Submission Rules</PinkStrong></h2>
-                                <UlC>
-                                    <li>Please include:</li>
-                                    <UlC>
-                                        <li>A readme explaining:</li>
-                                        <UlC>
-                                            <li>What the project is</li>
-                                            <li>What language its written in</li>
-                                            <li>How to compile and run the application</li>
-
-                                        </UlC>
-                                        <li>A file containing all package requirements</li>
-                                        <li>All assets with necessary license</li>
-                                    </UlC>
-                                    <li>Shouldn't be a pain to set up (no more than 15 mins).</li>
-                                    <li>No tokens/keys that can’t be made for free by ourselves.</li>
-                                    <UlC>
-                                        <li>Example: If making a twitch bot, we should be able to put in our own bot
-                                            token.
-                                        </li>
-                                    </UlC>
-                                    <li>Please exclude:</li>
-                                    <UlC>
-                                        <li>node modules</li>
-                                        <li>build/target files</li>
-                                        <li>No executable, we compile it ourselves.</li>
-                                    </UlC>
-                                </UlC>
-                                <h4><PinkStrong>Compatibility: Windows 10+/Debian</PinkStrong></h4>
-                                <UlC>
-                                    <li>If code requires high end gpu or we can’t run it, pls make a video demo for us
-                                        to play.
-                                    </li>
-                                    <li>If addt'l software is used, need very clear instructions.</li>
-                                </UlC>
-                            </div>
-                        </div>
-
-                        {/* PRIZES PAGE */}
-
-                        <div className={page === 'prizes' ? styles.contentDiv : styles.hide}>
-                            <div className={styles.innerContentDiv}>
-                                <h1>Prizes</h1>
-                                <p>Everyone who participates will get a hoisted discord badge! Everyone also will get
-                                    CodeJam 2023 stickers, as long as they provide a shipping address and the cost isn't
-                                    over 10USD. We are still brainstorming other prizes that are digital or
-                                    otherwise.</p>
-                            </div>
-                        </div>
-
-
-                        {/* LINKS PAGE */}
-
-                        {/*<div className={page === 'links' ? styles.contentDiv : styles.hide}>*/}
-                        {/*    <div className={styles.innerContentDiv}>*/}
-                        {/*        <h1>All Links</h1>*/}
-                        {/*        <p>Consider this page a site-map for links.</p>*/}
-                        {/*        <p><a href="#" onClick={() => setPage('copyleft')}>copyleft license</a></p>*/}
-                        {/*        <p>THing3</p>*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
-
-                        {/*PARTICIPANTS PAGE*/}
-
-                        <div className={page === 'participants' ? styles.contentDiv : styles.hide}>
-                            <div className={styles.innerContentDiv}>
-                                <h1>Participants</h1>
-                                <p>Registered people will show up here soon.</p>
-                            </div>
-                        </div>
-
-
-                        {/* ENTRIES PAGE */}
-
-                        {/*<div className={page === 'entries' ? styles.contentDiv: styles.hide}>*/}
-                        {/*    <div className={styles.innerContentDiv}>*/}
-                        {/*        <h1>Entries</h1>*/}
-                        {/*        <p>This is where people submitted entries can be admired</p>*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
-
-
-                        {/* CREDITS PAGE */}
-
-                        <div className={page === 'credits' ? styles.contentDiv : styles.hide}>
-                            <div className={styles.innerContentDiv}>
-                                <h1>Credits</h1>
-                                <p>First off, thanks Mysty for making this whole thing happen. Thanks to everyone who
-                                    volunteered to test and contribute ideas. More credits will be given as the codejam
-                                    continues.</p>
-                            </div>
-                        </div>
-
-
-                        <div className={page === 'copyleft' ? styles.contentDiv : styles.hide}>
-                            <div className={styles.innerContentDiv}>
-                                <h1>Copyleft License</h1><a href="#" onClick={() =>  setPage('rules')}>Return</a>
-                                <p>Technically a copyright license, but often referred to as 'copyleft'.</p>
-                                <p>I asked ChatGPT: "can you explain what a copy left license does in simple terms, especially when it comes to using it in a code jam"</p>
-                                <p>It replied:</p>
-                                <UlC>
-                                    <li>Certainly! In simple terms, a copyleft license is a type of software license that ensures that the software and its modifications remain free and open-source. It is designed to protect the freedom of the software and its users.</li>
-                                    <li>When you use a copyleft license in a code jam, it means that any code you contribute or modify during the jam must also be made available under the same copyleft license. This requirement ensures that the code and its derivatives stay open-source and freely available to others.</li>
-                                    <li>Let's say you participate in a code jam and use a copyleft license for your code. If someone else wants to use or modify your code, they are also required to make their changes available under the same copyleft license. This ensures that the software community continues to benefit from the contributions and encourages collaboration and sharing of code.</li>
-                                    <li>Copyleft licenses are often used in code jams and open-source projects to foster a culture of collaboration, sharing, and innovation. They help ensure that the code remains freely accessible, encourages others to contribute improvements, and prevents the code from being turned into proprietary software.</li>
-                                </UlC>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    {/* OUTSIDE CONTENT CONTAINER */}
-
-                    {/* FOOTER SOCIALS */}
-                    <div className={styles.footerSocialsContainer}>
-                        <Link href={'https://discord.gg/timeenjoyed'} target={"_blank"}
-                              className={styles.footerSocials}>
-                            <FaDiscord style={{color: "#faa5b4", width: "2.5rem"}}/>
-                            <div className={styles.socialsPopover}>
-                                Discord
-                            </div>
-                        </Link>
-
-                        <Link href={'https://twitch.tv/timeenjoyed'} target={"_blank"} className={styles.footerSocials}>
-                            <FaTwitch style={{color: "#faa5b4", width: "2.5rem"}}/>
-                            <div className={styles.socialsPopover}>
-                                Twitch
-                            </div>
-                        </Link>
-
-                        <Link href={'https://twitter.com/TimeEnjoyed_'} target={"_blank"}
-                              className={styles.footerSocials}>
-                            <FaTwitter style={{color: "#faa5b4", width: "2.5rem"}}/>
-                            <div className={styles.socialsPopover}>
-                                Twitter
-                            </div>
-                        </Link>
-
-                        <Link href={'https://www.instagram.com/time.enjoyed/'} target={"_blank"}
-                              className={styles.footerSocials}>
-                            <FaInstagram style={{color: "#faa5b4", width: "2.5rem"}}/>
-                            <div className={styles.socialsPopover}>
-                                Instagram
-                            </div>
-                        </Link>
-                    </div>
-
-                </div>
-                {/* OUTSIDE INNER CONTAINER */}
-            </div>
-        </>
-    )
+              return (
+                <Link
+                  key={key}
+                  href={value.href}
+                  target={"_blank"}
+                  className={styles.footerSocials}
+                  rel="noreferrer noopener nofollow"
+                  aria-label={key}
+                >
+                  <Icon
+                    style={{ color: "#faa5b4", width: "2.5rem", speak: "none" }}
+                    aria-hidden="true"
+                    role="presentation"
+                    tabIndex="-1"
+                  />
+                  <div className={styles.socialsPopover}>{key}</div>
+                </Link>
+              );
+            })}
+          </footer>
+        </div>
+        {/* OUTSIDE INNER CONTAINER */}
+      </div>
+    </div>
+  );
 }

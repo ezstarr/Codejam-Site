@@ -1,19 +1,18 @@
-
 .ulC {
-    list-style: outside none;
-    text-indent: -20px;
+  list-style: outside none;
+  text-indent: -20px;
 }
 .ulC > li {
-    padding-left: 30px;
-    font-size: 1rem;
-    line-height: 1.2rem;
+  padding-left: 30px;
+  font-size: 1rem;
+  line-height: 1.2rem;
 }
 .ulC > li::before {
-    content: "✽ ";
-    font-size: .8rem;
-    color: #afa186;
+  content: "✽ ";
+  font-size: 0.8rem;
+  color: #afa186;
 }
 .ulC > .ulC {
-    padding-left: 40px;
-    padding-bottom: 1rem;
+  padding-left: 40px;
+  padding-bottom: 1rem;
 }

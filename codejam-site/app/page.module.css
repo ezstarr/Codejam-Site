@@ -1,156 +1,234 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .header {
-    display: flex;
-    flex-direction: row;
-    margin-left: var(--nav-alignment);
-    padding: 1rem 0;
+  display: flex;
+  flex-direction: row;
+  margin-left: var(--nav-alignment);
+  padding: 1rem 0;
 }
 
 .headerLogo {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .teHeader {
-    font-size: 1.8rem;
-    font-family: var(--cursive-font);
+  font-size: 1.8rem;
+  font-family: var(--cursive-font);
 }
 .cjHeader {
-    font-size: 3rem;
+  font-size: 3rem;
 }
 .innerContainer {
-    display: flex;
-    flex-direction: row;
-    height: 60%;
-    width: 60%;
+  display: flex;
+  flex-direction: row;
+  height: 60%;
+  width: 60%;
 }
-.navContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    min-width: var(--nav-alignment);
+.navContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-evenly;
+  min-width: var(--nav-alignment);
 }
 .navButton {
-    color: var(--primary-color);
-    background: var(--primary-background);
-    border-radius: 100px;
-    border: 0;
-    font-size: 1.1rem;
-    width: 8rem;
-    height: 3rem;
-    text-decoration: none;
-    text-align: center;
-    line-height: 3rem;
+  color: var(--primary-color);
+  background: var(--primary-background);
+  border-radius: 100px;
+  border: 0;
+  font-size: 1.1rem;
+  width: 8rem;
+  height: 3rem;
+  text-decoration: none;
+  text-align: center;
+  line-height: 3rem;
 }
+
+.hamburgerIconContainer {
+  border-radius: 6.9px; /* noice */
+  color: var(--primary-color);
+  background: var(--secondary-background);
+  min-width: 1rem;
+  min-height: 1rem;
+  border: 0;
+  font-size: 1.1rem;
+  text-decoration: none;
+  text-align: center;
+  line-height: 3rem;
+  margin: 0.5rem;
+  padding: 0.75rem;
+  transition: all 0.1s;
+  outline: none;
+}
+
+.hamburgerIconContainer:hover {
+  color: var(--accent-color);
+  outline: 2px solid var(--primary-color);
+}
+
 .navActive {
-    filter: drop-shadow(0px 0px 5px var(--accent-color));
+  filter: drop-shadow(0px 0px 5px var(--accent-color));
 }
 .navButton:active {
-    background: var(--secondary-background);
+  background: var(--secondary-background);
 }
 .navButton:hover {
-    background: var(--secondary-background);
+  background: var(--secondary-background);
 }
 .contentContainer {
-    /*display: flex;*/
-    /*flex-direction: column;*/
-    background: var(--secondary-background);
-    height: 100%;
-    border-radius: 50px;
-    filter: drop-shadow(12px 12px 0px #f0b7b1);
-    min-width: 100%;
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  background: var(--secondary-background);
+  height: 100%;
+  border-radius: 50px;
+  filter: drop-shadow(12px 12px 0px #f0b7b1);
+  min-width: 100%;
 }
 .h1 {
-    color: var(--accent-color);
+  color: var(--accent-color);
 }
 .h4C {
-    padding-bottom: .5rem;
+  padding-bottom: 0.5rem;
 }
 .contentDiv {
-    padding: 2rem 1rem 2rem 0;;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+  padding: 2rem 1rem 2rem 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .innerContentDiv {
-    padding: 2rem;
-    display: flex;
-    gap: 1rem;
-    flex-direction: column;
-    height: 100%;
-    scrollbar-width: thin;
-    overflow-y: auto;
-    scrollbar-color: var(--accent-color) var(--primary-background)
+  padding: 2rem;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  height: 100%;
+  scrollbar-width: thin;
+  overflow-y: auto;
+  scrollbar-color: var(--accent-color) var(--primary-background);
 }
-.hide {
-    display: none;
+.hide,
+.hamburgerIconContainer {
+  display: none;
 }
 
 .footerSocialsContainer {
-    display: flex;
-    flex-direction: column;
-    margin-left: 4rem;
-    justify-content: space-evenly;
+  display: flex;
+  flex-direction: column;
+  margin-left: 4rem;
+  justify-content: space-evenly;
 }
 
 .footerSocials {
-    display: flex;
-    padding: 2rem;
+  display: flex;
+  padding: 2rem;
 }
 
 .footerSocialsContainer > a > svg {
-    font-size: 3rem;
+  font-size: 3rem;
 }
 
 .footerSocials:hover .socialsPopover {
+  z-index: 1;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+  cursor: pointer;
+}
+
+.socialsPopover {
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  background-color: var(--secondary-background);
+  color: var(--primary-color);
+  font-size: small;
+  font-weight: bold;
+  padding: 0.5rem;
+  border-radius: 5px;
+  align-items: center;
+  margin-left: 0.5rem;
+}
+
+.footerSocialsContainer > a {
+  text-decoration: none;
+}
+
+.rainbowText {
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--accent-color),
+    var(--primary-color)
+  );
+  text-align: center;
+  background-size: 800% 800%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 12s ease infinite;
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 25%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+/* media query from small laptop width downwards */
+@media screen and (max-width: 1024px) {
+  /* don't forget to change this value in page.jsx as well */
+  .innerContainer {
+    padding: 5%;
+    width: 95%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .header {
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  .footerSocialsContainer {
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  .footerSocials .socialsPopover {
     z-index: 1;
     opacity: 1;
     visibility: visible;
     transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
     cursor: pointer;
-}
+  }
 
-.socialsPopover {
-    display: flex;
-    opacity: 0;
-    visibility: hidden;
-    background-color: var(--secondary-background);
-    color: var(--primary-color);
-    font-size: small;
-    font-weight: bold;
-    padding: 0.5rem;
-    border-radius: 5px;
+  /* idea to make the links operate in a grid? */
+  /* although it doesn't look too bad right now, I am not sure exactly how you want it to look like, so will leave you with the bare minimum :+1: (:+1: = thumbsup emoji) */
+  .footerSocialsContainer {
+    margin-left: 0;
+    padding: 0;
+    justify-content: center;
     align-items: center;
-    margin-left: 0.5rem;
-}
+  }
 
-.footerSocialsContainer > a {
-    text-decoration: none;
-}
+  .footerSocials {
+    padding: 1rem;
+  }
 
-.rainbowText {
-    background-image: repeating-linear-gradient(45deg, var(--accent-color), var(--primary-color));
-    text-align: center;
-    background-size: 800% 800%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: rainbow 12s ease infinite;
-}
-
-
-@keyframes rainbow {
-    0% {
-        background-position: 0 50%;
-    }
-    50% {
-        background-position: 100% 25%;
-    }
-    100% {
-        background-position: 0 50%;
-    }
+  /* only shows hamburger icon till small laptop width */
+  .hamburgerIconContainer {
+    display: flex;
+  }
 }
