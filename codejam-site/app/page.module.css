@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
 }
 .header {
   display: flex;
@@ -27,6 +27,7 @@
   flex-direction: row;
   height: 60%;
   width: 60%;
+
 }
 .navContainer {
   display: flex;
@@ -188,17 +189,38 @@
 @media screen and (max-width: 1024px) {
   /* don't forget to change this value in page.jsx as well */
   .innerContainer {
-    padding: 5%;
+    padding: 60px 3% 3% 3%;
     width: 95%;
     height: 100%;
     flex-direction: column;
-    justify-content: center;
-    gap: 2rem;
+    gap: 1rem;
+    position: absolute;
+    top: 0;
   }
-
+  .innerContentDiv {
+    padding-left: 1.5rem;
+    padding-right: .5rem;
+    padding-top: 1rem;
+  }
+  .navContainer {
+    transition: transform 0.3s ease;
+    z-index: 1;
+  }
   .header {
-    margin-left: 0;
+    margin-left: 2rem;
+    align-items: center;
     justify-content: center;
+    flex-direction: row;
+  }
+  .headerLogo {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 1rem;
+  }
+  .cjHeader {
+    font-size: 1.7rem;
   }
 
   .footerSocialsContainer {
