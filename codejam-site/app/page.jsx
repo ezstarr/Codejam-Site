@@ -444,7 +444,7 @@ export default function Home() {
 
   // state
   const [page, setPage] = useState(displayPivots[0]);
-  const [showMenu, setShowMenu] = useState(false);
+  const [showMenu, setShowMenu] = useState(true);
   const [windowWidth, setWindowWidth] = useState(0);
 
   useEffect(() => {
