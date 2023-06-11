@@ -171,7 +171,7 @@ const pivotSwitch = (pivot) => {
             <UlC>
               <li>Group matchmaking (if needed)</li>
               <li>
-                <a href={"http://codejam.timeenjoyed.dev/participants"}>
+                <a href={"http://codejam.timeenjoyed.dev/participants"} target="_blank" rel="noopener noreferrer">
                   Click here to see all participants so you can team up
                 </a>
               </li>
@@ -283,6 +283,16 @@ const pivotSwitch = (pivot) => {
             </li>
             <li>
               Any open source license is fine. (
+              {/*<Link*/}
+              {/*    key = {pivot}*/}
+              {/*    href={"#"}*/}
+              {/*    className={`${styles.navButton} ${*/}
+              {/*        page === copyleft ? styles.navActive : ""*/}
+              {/*    }`}*/}
+              {/*    onClick={() => setPage(copyleft)}*/}
+              {/*>*/}
+              {/*  copyleft license*/}
+              {/*</Link>*/}
               <a href="#" onClick={() => setPage(pivots.copyleft)}>
                 <small>copyleft license</small>
               </a>
@@ -515,10 +525,8 @@ export default function Home() {
               displayPivots.map((pivot) => (
                 <Link
                   key={pivot}
+                  className={`${styles.navButton} ${page === pivot ? styles.navActive : ''}`}
                   href={"#"}
-                  className={`${styles.navButton} ${
-                    page === pivot ? styles.navActive : ""
-                  }`}
                   onClick={() => setPage(pivot)}
                 >
                   {pivot}
