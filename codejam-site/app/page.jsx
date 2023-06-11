@@ -68,6 +68,7 @@ const footerLinks = {
  * @returns {JSX.Element} the page to be rendered
  */
 const pivotSwitch = (pivot) => {
+  const [page, setPage] = useState(displayPivots[0]);
   switch (pivot) {
     case pivots.goal /* GOAL PAGE */:
       return (
@@ -284,16 +285,15 @@ const pivotSwitch = (pivot) => {
             <li>
               Any open source license is fine. (
               {/*<Link*/}
-              {/*    key = {pivot}*/}
               {/*    href={"#"}*/}
               {/*    className={`${styles.navButton} ${*/}
-              {/*        page === copyleft ? styles.navActive : ""*/}
+              {/*        pivot === copyleft ? styles.navActive : ""*/}
               {/*    }`}*/}
               {/*    onClick={() => setPage(copyleft)}*/}
               {/*>*/}
               {/*  copyleft license*/}
               {/*</Link>*/}
-              <a href="#" onClick={() => setPage(pivots.copyleft)}>
+              <a href="#" onClick={() => setPage(pivots?.copyleft)}>
                 <small>copyleft license</small>
               </a>
               )
