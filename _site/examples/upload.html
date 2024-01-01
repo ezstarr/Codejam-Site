@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>upload</title>
+  <link rel="shortcut icon" sizes="16x16 32x32 48x48 64x64 128x128 256x256" href="/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Try out Elm: A delightful language with friendly error messages, great performance, small assets, and no runtime exceptions.">
+  <link rel="stylesheet" rel="preload" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Courier+Prime&display=swap">
+  <link rel="stylesheet" href="/assets/editor-styles.css"/>
+</head>
+
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
+  <symbol id="logo" viewBox="-300 -300 600 600" fill="currentColor">
+    <g transform="scale(1 -1)">
+    <polygon points="-280,-90 0,190 280,-90" transform="translate(0 -210) rotate(0)"></polygon>
+      <polygon points="-280,-90 0,190 280,-90" transform="translate(-210 0) rotate(-90)"></polygon>
+      <polygon points="-198,-66 0,132 198,-66" transform="translate(207 207) rotate(-45)"></polygon>
+      <polygon points="-130,0 0,-130 130,0 0,130" transform="translate(150 0) rotate(0)"></polygon>
+      <polygon points="-191,61 69,61 191,-61 -69,-61" transform="translate(-89 239) rotate(0)"></polygon>
+      <polygon points="-130,-44 0,86  130,-44" transform="translate(0 106) rotate(-180)"></polygon>
+      <polygon points="-130,-44 0,86  130,-44" transform="translate(256 -150) rotate(-270)"></polygon>
+    </g>
+  </symbol>
+</svg>
+
+<main id="main"></main>
+<textarea id="original" style="display:none;">-- File upload with the <input type="file"> node.
+--
+-- Dependencies:
+--   elm install elm/file
+--   elm install elm/json
+--
+
+
+import Browser
+import File exposing (File)
+import Html exposing (..)
+import Html.Attributes exposing (..)
+import Html.Events exposing (..)
+import Json.Decode as D
+
+
+
+-- MAIN
+
+
+main =
+  Browser.element
+    { init = init
+    , view = view
+    , update = update
+    , subscriptions = subscriptions
+    }
+
+
+
+-- MODEL
+
+
+type alias Model = List File
+
+
+init : () -> (Model, Cmd Msg)
+init _ =
+  ([], Cmd.none)
+
+
+
+-- UPDATE
+
+
+type Msg
+  = GotFiles (List File)
+
+
+update : Msg -> Model -> (Model, Cmd Msg)
+update msg model =
+  case msg of
+    GotFiles files ->
+      (files, Cmd.none)
+
+
+
+-- SUBSCRIPTIONS
+
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+  Sub.none
+
+
+
+-- VIEW
+
+
+view : Model -> Html Msg
+view model =
+  div []
+    [ input
+        [ type_ "file"
+        , multiple True
+        , on "change" (D.map GotFiles filesDecoder)
+        ]
+        []
+    , div [] [ text (Debug.toString model) ]
+    ]
+
+
+filesDecoder : D.Decoder (List File)
+filesDecoder =
+  D.at ["target","files"] (D.list File.decoder)</textarea>
+<script src="/assets/editor-codemirror.js"></script>
+<script src="/assets/editor-custom-elements.js"></script>
+<script src="/assets/editor-elm.js"></script>
+<script>
+  window.addEventListener('load', function() {
+    var originalCode = document.getElementById('original').textContent;
+    main = Elm.Page.Editor.init({
+      node: document.getElementById('main'),
+      flags: {
+        name: "upload",
+        width: window.innerWidth,
+        height: window.innerHeight,
+        original: document.getElementById('original').textContent,
+        dependencies: { "direct": {
+    "elm/browser": "1.0.2",
+    "elm/core": "1.0.5",
+    "elm/file": "1.0.5",
+    "elm/html": "1.0.0",
+    "elm/json": "1.1.3"
+  },
+  "indirect": {
+    "elm/bytes": "1.0.8",
+    "elm/time": "1.0.0",
+    "elm/url": "1.0.0",
+    "elm/virtual-dom": "1.0.2"
+  }
+}
+      }
+    });
+
+    main.ports.submitSource.subscribe(function(source) {
+      var editorNode = document.getElementById('editor');
+      var codeNode = document.getElementById('code');
+      codeNode.value = source;
+      editorNode.submit();
+    });
+
+    window.addEventListener("message", gotErrors, false);
+
+    function gotErrors(event) {
+      if (event.origin !== "https://elm.studio" && event.origin !== "https://social.elm.studio") return;
+      if (event.data == "SUCCESS") {
+        main.ports.gotSuccess.send(null);
+      } else {
+        var message = JSON.parse(event.data);
+        main.ports.gotErrors.send(message);
+      }
+    }
+
+    window.addEventListener("error", function (e) {
+      main.ports.gotJsError.send(e.error.message);
+      return false;
+    });
+
+  });
+</script>
+
+</body>
+
+</html>
+
